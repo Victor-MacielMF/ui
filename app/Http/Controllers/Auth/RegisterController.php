@@ -74,7 +74,7 @@ class RegisterController extends Controller
     }else{
         /** Verificando se digitou a senha corretamente */
         if($request->password != $request->password_confirmation ){
-            dd($validation);
+            return redirect('/entrar')->with('msg', 'As senhas não coincidem.');
         } else { 
             /** Validando o CPF e o Email, se der errado redireciona automaticamente para onde o usuário estava. (['msg'=>$request->password,'email'=>$request->cpf]);   */
             $this->validate($request, [
