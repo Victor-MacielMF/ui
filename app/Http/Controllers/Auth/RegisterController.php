@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Endereco;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Auth\Carbon;
 
 class RegisterController extends Controller
 {
@@ -56,18 +58,110 @@ class RegisterController extends Controller
         ]);
     }
 
+
+
+    public function Redirect(Request $request) {
+        
+
+        /**
+         * Tenho que fazer a senha hash
+         * 'cep' 
+         */
+
+        /** Verificando se as informações iniciais foram passadas para poder acessar o registro */
+    if($request->email == null || $request->password == null|| $request->password_confirmation == null || $request->cpf == null || $request->cep == null ){
+        return view('usuario.login');
+    }else{
+        /** Verificando se digitou a senha corretamente */
+        if($request->password != $request->password_confirmation ){
+            dd($validation);
+        } else { 
+            /** Validando o CPF e o Email, se der errado redireciona automaticamente para onde o usuário estava. (['msg'=>$request->password,'email'=>$request->cpf]);   */
+            $this->validate($request, [
+                'cpf' => 'bail|required|cpf|unique:users',
+                'email' => 'bail|required|email|unique:users',
+            ]);
+            /** Aqui eu pego o estado e a cidade através do cep */
+            $results = simplexml_load_file("http://cep.republicavirtual.com.br/web_cep.php?formato=xml&cep=" . $request->get('cep'));
+            /** Se der erro na consulta, volta no login */
+            if($results->resultado_txt != 'sucesso - cep único'){
+                return redirect('/entrar')->with('msg', 'CEP inválido.');
+            }else{
+                /** Criando a hash da senha */
+                $array=array('email'=>$request->email,'cpf'=>$request->cpf,'cep'=>$request->cep,
+                'cidade'=>$results->cidade,'uf'=>$results->uf,'password'=>$request->password,
+                'password_confirmation'=>$request->password_confirmation);
+                /** permissão para acessar o registrar */
+                /** Os campos do endereço são endereco->uf e endereco->cidade */
+                return view('usuario.register',compact('array'));
+            }
+        }
+
+    }
+
+
+    }
+
+
     /**
      * Create a new user instance after a valid registration.
      *
+     *   $user->nome = 
+     *   $user->email =
+      *  $user->cpf =
+     *   $user->rg =
+     *  
+            *    $request->password = Hash::make($request->password);
+     *   $user->nascimento =
+      *  $user->telefone =
+     * 
+     * 
      * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $endereco = new Endereco;
+
+        $validation = Validator::make($data, [
+            'cidade' => 'required',
+            'cep' => 'required',
+            'estado' => 'required',
+            'endereco' => 'required',
+            'numero' => 'required',
+            'bairro' => 'required'
+        ]);
+        if ($validation->fails()) {
+            return redirect('/entrar')->with('msg', 'Insira as informações corretamente.');
+        }
+
+
+
+        $nascimento=date("Y/m/d", strtotime($data['nascimento']));
+        $usuario =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'cpf' => $data['cpf'],
+            'rg' => $data['rg'],
+            'sexo' => $data['sexo'],
+            'nascimento' => $nascimento ,
+            'telefone' => $data['telefone']
+            
         ]);
+
+        $endereco->cidade = $data['cidade'];
+        $endereco->cep = $data['cep'];
+        $endereco->estado = $data['estado'];
+        $endereco->endereco = $data['endereco'];
+        $endereco->numero = $data['numero'];
+        $endereco->complemento = $data['complemento'];
+        $endereco->bairro = $data['bairro'];
+        $endereco->referencia = $data['referencia'];
+        $endereco->user_id = $usuario->id;
+        $endereco->save();
+        return $usuario;
+
+    
     }
 }

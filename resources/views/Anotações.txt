@@ -1,0 +1,21 @@
+Todos os botões da navbar tem Hover e active, inclusive o login.
+
+
+acho que vou tirar o esqueci meu login....
+Não vejo necessidade pois não tem o login por cpf.
+
+Ajustar o tamanho máximo da tela- criar uma nova vazia e colocar o fotter embaixo certinho de teste.
+
+
+login por redes sociais
+
+Se entrar no registrar pelo /registrar sem ser pelo login, crasha.
+
+
+Colocar os icones nos botões.
+
+
+<?php
+$value = "Test me more";
+echo strtok($value, " "); // Test
+?>

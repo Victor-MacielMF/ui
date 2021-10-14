@@ -1,0 +1,481 @@
+/* Gerais */
+
+html,body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #181A1E;
+    margin:0px;
+    height:95%;
+
+}
+
+.row{
+    margin:0;
+}
+
+p, li{
+    font-size: 14px;
+}
+
+main{
+    height: 100%;
+}
+
+.container-fluid{
+    padding:0;
+    margin-top: 7em;
+}
+
+
+/* Barra de navegação */
+.navbar{
+    padding: 0;
+}
+#nav-container{
+    background-color: #202226;
+    padding: 0em 2em;
+    border: 1px solid #000000;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.navbar-brand{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-link{
+    font-size: 14px;
+}
+
+.nav-item{
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 1.3em;
+    padding-bottom: 1.3em;
+    border-top: 3px solid #202226;
+    border-bottom: 3px solid #202226;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #E5CD14 !important;
+}
+
+#navbar-button i{
+    margin-right: .1em;
+}
+
+#navbar-button{
+    font-size:16px;
+    padding: 0em .5em 0em .5em;
+    border: 1px solid #E5CD14;
+    border-radius: .4em;
+    color: #E5CD14 ;
+    transition: .5s;
+}
+
+
+
+#navbar-button:hover{
+    color: #202226;
+    background-color: #E5CD14;
+}
+
+.navbar-dark .navbar-nav .active{
+    color: #E5CD14 !important;
+    border-bottom: 3px solid #E5CD14;
+}
+
+.navbar-dark .justify-contend-end .active{
+    color: #202226 !important;
+    background-color: #E5CD14;
+}
+
+/* Mensagem de navegação do site */
+
+#navigation-area .container{
+    padding-left: 2em;
+}
+
+#navigation-area h1{
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    
+    margin-bottom: 1.5em;
+
+}
+
+#navigation-area i{
+    font-size: 26px;
+}
+
+
+/* Formulários de login e cadastro */
+
+#logcad-area .container{
+    padding:0;
+}
+
+
+#logcad-area .col-md-6{
+    padding:0;
+}
+
+#logcad-area .container .row .direita{
+    padding-right: 1em;
+}
+
+#logcad-area .container .row .esquerda{
+    padding-left: 1em;
+}
+
+.logcad{
+    text-align: center;
+    background-color: #202226;
+    border: 1px solid black;
+    padding: 2em 1.5em;
+    height: 100%;
+}
+
+.title{
+    color:#E5CD14 ;
+    margin: 0;
+    padding:0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    padding-bottom: 1.5em;
+}
+
+#logcad-area .main-input{
+    background-color: #202226;
+    color: white;
+    border:1.5px solid white;
+    border-radius: .4em;
+}
+
+#logcad-area .main-input:focus{
+    border: solid 1px #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    border:1.5px solid white;
+}
+
+#logcad-area .main-input::placeholder{
+    font-weight: 500;
+    color: #707070;
+}
+
+#logcad-area .main-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #202226 inset;
+}
+
+#logcad-area .main-input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}
+
+#logcad-area .espaco-embaixo{
+    margin-bottom: 1em;
+}
+
+/* Botão de Entrar */
+.main-btn{
+    margin-top: 2em;
+    background-color: #E5CD14;
+    width: 100%;
+    height: 2.5em;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: .4em;
+    border: 1px solid #E5CD14;
+    color: #202226;
+}
+
+.main-btn:hover{
+    background-color:  #cfba15;
+}
+
+.main-btn:active{
+    background-color:  #aa9a1f;
+    border: #aa9a1f;
+    color: black;
+}
+
+/* Recuperar Acesso */
+.acesso{
+    overflow: hidden;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+
+#logcad-area #login{
+    float: right;
+    clear: both;
+    color: white;
+    margin-right: 1em;
+}
+#logcad-area #senha{
+    float: left;
+    clear: both;
+    color: white;
+    margin-right: 1em;
+}
+
+/*Acessar com redes sociais*/
+
+#title-2{
+    color:#E5CD14 ;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    padding-top: 1.5em;
+    border-top: 1px solid #707070;
+    margin-bottom: 1.2em;
+}
+
+.negrito{
+    font-weight: bold;
+}
+
+.social i{
+    margin-right: 5px;
+}
+
+.btn-facebook{
+    background-color: transparent;
+    color: #006add ;
+    border: 2px solid #006add;
+    width: 90%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: .4em;
+    font-size: 14px;
+}
+
+.btn-google{
+    background-color: transparent;
+    color: #dd4b39 ;
+    border: 2px solid #dd4b39;
+    margin: 0em 1em 0em 0em;
+    width: 90%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: .4em;
+    font-size: 14px;
+}
+
+.btn-facebook:hover{
+    background-color: #006add;
+    color: #202226;
+}
+
+.btn-google:hover{
+    background-color: #dd4b39;
+    color: #202226;
+}
+.btn-facebook:active{
+    background-color: #0055af;
+    border: #0055af 2px solid;
+    color: black;
+}
+
+.btn-google:active{
+    background-color: #aa392b;
+    border: #aa392b 2px solid;
+    color: black;
+}
+
+
+/* Não sei meu CEP */
+
+.cep-col{
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+#logcad-area .cep-col a{
+    float: right;
+    clear: both;
+    color: #707070;
+    padding:0;
+    margin: .2em;
+    font-size: 12px;
+    margin-bottom: 1em;
+    font-weight: 400;
+}
+
+/* Cadastro */
+.second-btn{
+    background-color: transparent;
+    width: 100%;
+    height: 2.5em;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: .4em;
+    border: 2px solid #E5CD14;
+    color: #E5CD14;
+    transition: 0.5s;
+}
+
+
+.second-btn:hover{
+    background-color:  #E5CD14;
+    color: #202226;
+}
+
+.second-btn:active{
+    background-color:  #aa9a1f;
+    border: #aa9a1f;
+    color: black;
+}
+
+/*Copy area*/
+
+#copy-area{
+    margin-top: 15px;
+    background-color: #202226;
+}
+
+#copy-area .container{
+    padding: 10px 0;
+    text-align: center;
+}
+
+#copy-area .container p{
+    margin-bottom: 0;
+    
+    color: white;
+}
+
+#copy-area .container a{
+    font-weight: bold;
+    color: white;
+}
+
+#copy-area .container a:hover{
+    text-decoration: none;
+    color: #E5CD14;
+}
+
+
+/* Cadastro do Sexo */
+.row-sexo{
+    height: 2.5em;
+}
+.row-sexo p{
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-size: 12px;
+    display: inline;
+    vertical-align: middle;
+}
+input[type="radio"]{
+    vertical-align: middle;
+}
+
+#sexo{
+    font-size: 13px;
+    margin: 0;
+    padding-bottom: 0;
+    font-weight: 700;
+    color: white;
+}
+
+/* Arrumando o form do cadastro */
+.container form{
+    padding: 0em;
+    margin: 0em !important;
+}
+
+
+
+#leftbox {
+    float:left; 
+}
+#rightbox{
+    float:right;
+}
+
+.left{
+    margin-right: 1em;
+}
+.right{
+    margin-left: 1em;
+}
+
+/* Arrumando o tamanho dos inputs número e complemento do cadastro */
+
+#numero-cad{
+    width: 30%;
+}
+
+#complemento-cad{
+    margin-left: 2%;
+    width: 68%;
+}
+
+/* Arrumando o tamanho dos inputs cidade e estado do cadastro */
+
+#cidade-cad{
+    width: 70%;
+}
+
+#estado-cad{
+    margin-left: 2%;
+    width: 28%;
+}
+
+#termos{
+    height: 2.5em;
+    font-size: 12px;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+.float{
+    float:center;
+}
+
+#concluir{
+    margin-top: 1em;
+}
+
+#concluir button{
+    width:15%;
+    display: block;
+    margin-right: auto;
+    text-transform: capitalize;
+    margin-left: auto;
+}
+
+.alert{
+    font-size: 14px;
+    
+}
+
+#logcad-area .preenchimento-automatico{
+    color: #b4b4b4;
+    font-weight: bold;
+}
+.input-hidden{
+    height:0;
+    width:0;
+    visibility: hidden;
+    padding:0;
+    margin:0;
+    float:right;
+  }

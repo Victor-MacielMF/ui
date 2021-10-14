@@ -137,8 +137,15 @@ return [
     */
 
     'custom' => [
+        'email' => [
+            'email' => 'E-mail inválido',
+            'unique' => 'Este e-mail já está em uso'
+        ],
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'cpf' => [
+            'unique' => 'Este CPF já está em uso',
         ],
     ],
 
