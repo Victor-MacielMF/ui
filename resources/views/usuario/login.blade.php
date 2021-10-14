@@ -53,11 +53,21 @@
                             </h1>
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
-                                <input type="email" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" autocomplete="email" required autofocus>
-                                <input type="password" class="form-control main-input @error('password') is-invalid @enderror" name="password" placeholder="Senha*" autocomplete="current-password" required>
+                                <input id="email" type="email" class="form-control main-input espaco-embaixo @error('email') is-invalid @enderror" name="email" placeholder="E-mail*" required autocomplete="email" autofocus>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input id="password" type="password" class="form-control main-input @error('password') is-invalid @enderror" name="password" placeholder="Senha*" required autocomplete="current-password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <button type="submit" class="main-btn">
                                     <i class="bi bi-door-open-fill"></i>
-                                    {{ __('Entrar') }}
+                                    {{ __('Login') }}
                                 </button>
                             </form>
                             {{--Recuperar Acesso --}}
