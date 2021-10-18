@@ -154,10 +154,11 @@
                                         <div class="enderecos-left">
                                             <p class="rua">{{$endereco->endereco}}</p><br>
                                             <p class="numero">Número: {{$endereco->numero}}</p>
-                                            @if ($endereco->complemento!=null)
-                                                <p class="complemento">, {{$endereco->complemento}}</p><br>
+                                            @if (($endereco->complemento!=null) && ($endereco->complemento != ''))
+                                                <p class="complemento">, {{$endereco->complemento}}</p>
                                             @endif
-                                            @if ($endereco->referencia!=null)
+                                            @if (!empty($endereco->referencia))
+                                            <br>
                                                 <p class="referencia">{{$endereco->referencia}}</p>
                                             @endif
                                             <br>
