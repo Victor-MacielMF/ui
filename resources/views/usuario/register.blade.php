@@ -60,7 +60,7 @@
                                         <h1 class="title">
                                             Endereço de cadastro
                                         </h1>
-                                        <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cep" name="cpf" value="{{$array['cep']}}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cep" value="{{$array['cep']}}" autocomplete="off" readonly>
                                         <input type="text" class="form-control main-input espaco-embaixo" name="endereco" placeholder="Endereço*" autocomplete="off" required>
                                         <input type="text" id="numero-cad" class="form-control main-input espaco-embaixo" name="numero" placeholder="Número*" autocomplete="off" required>
                                         <input type="text" id="complemento-cad" class="form-control main-input espaco-embaixo" name="complemento" placeholder="Complemento" autocomplete="off">

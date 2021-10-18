@@ -5,6 +5,11 @@
 @section('content')
 
 <div class="container-fluid">
+
+
+
+
+
     {{-- Modal alterar senha --}}
     <div class="modal fade" id="alter-user-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -27,29 +32,35 @@
     </div>
 
     {{--Modal Editar Endereço--}}
-    <div class="modal fade" id="alter-address" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Editar endereço</h5>
+    @foreach ($enderecos as $endereco)
+        <div class="modal fade" id="alter-address-{{$endereco->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar endereço</h5>
+                </div>
+                <form action="/endereco/update/{{$endereco->id}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <input type="text" class="form-control modal-input" name="cep" value="{{$endereco->cep}}" autocomplete="off" readonly>
+                        <input type="text" class="form-control modal-input" name="endereco" value="{{$endereco->endereco}}" autocomplete="off" required>
+                        <input type="text" class="form-control modal-input end-numero" name="numero" value="{{$endereco->numero}}" autocomplete="off" required>
+                        <input type="text" class="form-control modal-input end-comple" name="complemento" value="{{$endereco->complemento}}" autocomplete="off">
+                        <input type="text" class="form-control modal-input" name="bairro" value="{{$endereco->bairro}}" autocomplete="off" required>
+                        <input type="text" class="form-control modal-input" name="referencia" value="{{$endereco->complemento}}" autocomplete="off">
+                        <input type="text" class="form-control modal-input end-cidade" name="cidade" value="{{$endereco->cidade}}" autocomplete="off" readonly>
+                        <input type="text" class="form-control modal-input end-uf" name="estado" value="{{$endereco->estado}}" autocomplete="off" readonly>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+                </div>
             </div>
-            <div class="modal-body">
-                <input type="text" class="form-control modal-input" name="cep" name="cpf" value="" autocomplete="off" readonly>
-                <input type="text" class="form-control modal-input" name="endereco" placeholder="Endereço*" autocomplete="off" required>
-                <input type="text" class="form-control modal-input end-numero" name="numero" placeholder="Número*" autocomplete="off" required>
-                <input type="text" class="form-control modal-input end-comple" name="complemento" placeholder="Complemento" autocomplete="off">
-                <input type="text" class="form-control modal-input" name="bairro" placeholder="Bairro*" autocomplete="off" required>
-                <input type="text" class="form-control modal-input" name="referencia" placeholder="Referência" autocomplete="off">
-                <input type="text" class="form-control modal-input end-cidade" name="cidade" value="" autocomplete="off" readonly>
-                <input type="text" class="form-control modal-input end-uf" name="estado" value="" autocomplete="off" readonly>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
-            </div>
-        </div>
-    </div>
+        </div> 
+    @endforeach
 
     {{--Modal Cadastrar Endereço--}}
     <div class="modal fade" id="Add-address" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -59,7 +70,7 @@
                 <h5 class="modal-title">Cadastrar novo endereço</h5>
             </div>
             <div class="modal-body">
-                <input type="text" class="form-control modal-input" name="cep" name="cpf" value="" autocomplete="off" >
+                <input type="text" class="form-control modal-input" name="cep" placeholder="cep" value="" autocomplete="off" >
                 <input type="text" class="form-control modal-input" name="endereco" placeholder="Endereço*" autocomplete="off" required>
                 <input type="text" class="form-control modal-input end-numero" name="numero" placeholder="Número*" autocomplete="off" required>
                 <input type="text" class="form-control modal-input end-comple" name="complemento" placeholder="Complemento" autocomplete="off">
@@ -102,26 +113,26 @@
                                         {{ __('Alterar senha') }}
                                     </button>
                                 </div>
-                                <input type="text" class="form-control main-input espaco-embaixo espaco-cima" name="name" placeholder="Nome completo*" autocomplete="off" minlength="3" required>
-                                <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" name="cpf" value="" autocomplete="off" readonly required>
-                                <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" name="cpf" value="" autocomplete="off" readonly required>
-                                <input type="text" class="form-control main-input espaco-embaixo" name="rg" placeholder="RG*" autocomplete="off">
+                                <input type="text" class="form-control main-input espaco-embaixo espaco-cima" name="name" value="{{$user->name}}" autocomplete="off" minlength="3" required>
+                                <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" name="cpf" value="{{$user->email}}" autocomplete="off" readonly required>
+                                <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" name="cpf" value="{{$user->cpf}}" autocomplete="off" readonly required>
+                                <input type="text" class="form-control main-input espaco-embaixo" name="rg" value="{{$user->rg}}" autocomplete="off">
                                 <div class="row row-sexo espaco-embaixo">
                                     <div class="col-md-12">
                                         <h1 class="title" id="sexo">Sexo</h1>
                                     </div>
                                     <div class="col-md-4">
-                                        <INPUT TYPE="RADIO"  NAME="sexo" VALUE="I" checked> <p>Não informar</p>
+                                        <INPUT TYPE="RADIO"  NAME="sexo" VALUE="I" {{ ($user->sexo=="I")? "checked" : "" }}> <p>Não informar</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <INPUT TYPE="RADIO"  NAME="sexo" VALUE="M"> <p>Masculino</p>
+                                        <INPUT TYPE="RADIO"  NAME="sexo" VALUE="M" {{ ($user->sexo=="M")? "checked" : "" }}> <p>Masculino</p>
                                     </div>
                                     <div class="col-md-4 ">
-                                        <INPUT TYPE="RADIO" NAME="sexo" VALUE="F"> <p>Feminino</p>
+                                        <INPUT TYPE="RADIO" NAME="sexo" VALUE="F" {{ ($user->sexo=="F")? "checked" : "" }}> <p>Feminino</p>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control main-input espaco-embaixo" id="nascimento" name="nascimento" placeholder="Data de Nascimento*" autocomplete="off" minlength="10" onkeypress="$(this).mask('00/00/0000')" required>
-                                <input type="text" class="form-control main-input" name="telefone" placeholder="Telefone para contato " onkeypress="$(this).mask('(00) 90000-0000')" autocomplete="off">
+                                <input type="text" class="form-control main-input espaco-embaixo" id="nascimento" name="nascimento" value="{{ date('d/m/Y', strtotime($user->nascimento)) }}" autocomplete="off" minlength="10" onkeypress="$(this).mask('00/00/0000')" required>
+                                <input type="text" class="form-control main-input" name="telefone" value="{{$user->telefone}}" onkeypress="$(this).mask('(00) 90000-0000')" autocomplete="off">
                                 <div class="col-md-12 align-right">
                                     <button type="submit" class="main-btn" id="btn-salvar">
                                         {{ __('Salvar') }}
@@ -138,46 +149,43 @@
                                 <h1 class="title" id="title-endereco">
                                     Endereços
                                 </h1>
-                                <div class="container-fluid enderecos">
-                                    <div class="enderecos-left">
-                                        <p class="rua">Rua Azulao</p><br>
-                                        <p class="numero">Número: 796</p>
-                                        <p class="sinais">, </p>
-                                        <p class="complemento">Q116 L20</p><br>
-                                        <p class="referencia">Perto do peg pag Paulista</p><br>
-                                        <p class="cep">77600-000</p>
-                                        <p class="sinais"> - </p>
-                                        <p class="cidade">Paraíso do Tocantins</p>
-                                        <p class="sinais">,</p> <p class="uf">TO</p>
+                                @foreach ($enderecos as $endereco)
+                                    <div class="container-fluid enderecos">
+                                        <div class="enderecos-left">
+                                            <p class="rua">{{$endereco->endereco}}</p><br>
+                                            <p class="numero">Número: {{$endereco->numero}}</p>
+                                            @if ($endereco->complemento!=null)
+                                                <p class="complemento">, {{$endereco->complemento}}</p><br>
+                                            @endif
+                                            @if ($endereco->referencia!=null)
+                                                <p class="referencia">{{$endereco->referencia}}</p>
+                                            @endif
+                                            <br>
+                                            <p class="cep">{{$endereco->cep}} - </p>
+                                            <p class="cidade">{{$endereco->cidade}}, </p>
+                                            <p class="uf">{{$endereco->estado}}</p>
+                                        </div>
+                                        <div class="enderecos-right">
+                                            <button class="btn endereco-btn" data-toggle="modal" data-target="#alter-address-{{$endereco->id}}">Editar</button>
+                                            @if (count($enderecos)>1)
+                                                <form action="/endereco/{{$endereco->id}}" method="POST" class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn endereco-btn">Excluir</button>
+                                                </form>
+                                            @endif
+                                        </div>
                                     </div>
-                                    <div class="enderecos-right">
-                                        <button class="btn endereco-btn" data-toggle="modal" data-target="#alter-address">Editar</button>
-                                        <button class="btn endereco-btn">Excluir</button>
+                                @endforeach
+
+                                @if (count($enderecos)<2)
+                                    <div class="col-md-12 ">
+                                        <button type="submit" class="main-btn absolut" id="btn-salvar" data-toggle="modal" data-target="#Add-address">
+                                            <i class="bi bi-plus-circle-fill"></i>
+                                            {{ __('Novo Endereço') }}
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="container-fluid enderecos">
-                                    <div class="enderecos-left">
-                                        <p class="rua">Rua Azulao</p><br>
-                                        <p class="numero">Número: 796</p>
-                                        <p class="sinais">, </p>
-                                        <p class="complemento">Q116 L20</p><br>
-                                        <p class="referencia">Perto do peg pag Paulista</p><br>
-                                        <p class="cep">77600-000</p>
-                                        <p class="sinais"> - </p>
-                                        <p class="cidade">Paraíso do Tocantins</p>
-                                        <p class="sinais">,</p> <p class="uf">TO</p>
-                                    </div>
-                                    <div class="enderecos-right">
-                                        <button class="btn endereco-btn" >Editar</button>
-                                        <button class="btn endereco-btn">Excluir</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 ">
-                                    <button type="submit" class="main-btn absolut" id="btn-salvar" data-toggle="modal" data-target="#Add-address">
-                                        <i class="bi bi-plus-circle-fill"></i>
-                                        {{ __('Novo Endereço') }}
-                                    </button>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

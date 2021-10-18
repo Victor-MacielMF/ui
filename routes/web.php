@@ -25,4 +25,5 @@ Auth::routes();
 Route::post('/registrar',[RegisterController::class, 'Redirect']);
 Route::post('/cadastrando',[RegisterController::class,'create']);
 Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
-
+Route::delete('/endereco/{id}', [Alter::class, 'destroy'])->middleware('auth');
+Route::put('/endereco/update/{id}', [Alter::class, 'updateAddress'])->middleware('auth');

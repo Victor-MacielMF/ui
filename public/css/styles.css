@@ -681,3 +681,7 @@ input[type="radio"]{
 .modal-input:read-only{
     background-color: rgb(238, 238, 238);
 }
+
+.inline{
+    display: inline-block;
+}
