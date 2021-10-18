@@ -48,7 +48,7 @@
                         <input type="text" class="form-control modal-input end-numero" name="numero" value="{{$endereco->numero}}" autocomplete="off" required>
                         <input type="text" class="form-control modal-input end-comple" name="complemento" value="{{$endereco->complemento}}" autocomplete="off">
                         <input type="text" class="form-control modal-input" name="bairro" value="{{$endereco->bairro}}" autocomplete="off" required>
-                        <input type="text" class="form-control modal-input" name="referencia" value="{{$endereco->complemento}}" autocomplete="off">
+                        <input type="text" class="form-control modal-input" name="referencia" value="{{$endereco->referencia}}" autocomplete="off">
                         <input type="text" class="form-control modal-input end-cidade" name="cidade" value="{{$endereco->cidade}}" autocomplete="off" readonly>
                         <input type="text" class="form-control modal-input end-uf" name="estado" value="{{$endereco->estado}}" autocomplete="off" readonly>
                     </div>
