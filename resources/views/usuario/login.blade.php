@@ -32,7 +32,7 @@
             {{-- Se tiver alguma mensagem de erro vai aparecer aqui --}}
         @if ($errors->any() || session('msg'))
             <div class="alert alert-danger">
-                {{session('msg2')}}
+                {{session('msg')}}
                 @foreach ($errors->all() as $error)
                 <div class="row">
                     {{ $error }}.
@@ -53,18 +53,8 @@
                             </h1>
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
-                                <input id="email" type="email" class="form-control main-input espaco-embaixo @error('email') is-invalid @enderror" name="email" placeholder="E-mail*" required autocomplete="email" autofocus>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                <input id="password" type="password" class="form-control main-input @error('password') is-invalid @enderror" name="password" placeholder="Senha*" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="email" type="email" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" required autocomplete="email" autofocus>
+                                <input id="password" type="password" class="form-control main-input" name="password" placeholder="Senha*" required minlength="8" autocomplete="current-password">
                                 <button type="submit" class="main-btn">
                                     <i class="bi bi-door-open-fill"></i>
                                     {{ __('Login') }}
@@ -95,6 +85,7 @@
                     </div>
                 </div>
 
+
                 {{-- Cadastro --}}
                 <div class="col-md-6 esquerda">
                     <div class="logcad">
@@ -103,13 +94,16 @@
                                 Quero me cadastrar
                             </h1>
                         </div>
-                        <form action="/andando" method="POST" >
+                        <form action="/registrar" method="POST" >
                             @csrf
-                            <input type="text" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" autocomplete="off" required>
+
+
+
+                            <input type="email" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" autocomplete="off" required>
                             <input type="password" class="form-control main-input espaco-embaixo" name="password" placeholder="Senha*" autocomplete="off" required minlength="8">
                             <input type="password" class="form-control main-input espaco-embaixo" name="password_confirmation" placeholder="Confirme a senha*" autocomplete="off" required minlength="8">
-                            <input type="text" class="form-control main-input espaco-embaixo" id="strCPF" name="cpf" placeholder="CPF*" autocomplete="off" onkeypress="$(this).mask('000.000.000-00');" required>
-                            <input type="text" class="form-control main-input" name="cep" placeholder="CEP*" autocomplete="off" onkeypress="$(this).mask('00.000-000')" required>
+                            <input type="text" class="form-control main-input espaco-embaixo" id="strCPF" name="cpf" placeholder="CPF*" autocomplete="off" onkeypress="$(this).mask('000.000.000-00');" minlength="14" required>
+                            <input type="text" class="form-control main-input" name="cep" placeholder="CEP*" autocomplete="off" onkeypress="$(this).mask('00.000-000')" minlength="10" required>
                             <div class="row">
                                 <div class="col-md-12 cep-col">
                                     <a href="https://buscacepinter.correios.com.br/app/endereco/index.php"  target="_blank" class="cep-link" > Não sei meu CEP <i class="bi bi-question-circle-fill"></i></a>

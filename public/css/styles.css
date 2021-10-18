@@ -1,11 +1,22 @@
 /* Gerais */
 
-html,body{
+html,body,main{
     font-family: 'Roboto', sans-serif;
     background-color: #181A1E;
     margin:0px;
-    height:95%;
+    padding: 0;
 
+}
+
+footer{
+    border-top: 2px solid black;
+    width: 100%;
+    position: fixed;
+    bottom:0;
+    margin:0px;
+    padding: 0;
+    height: 5vh;
+    background-color: #202226;
 }
 
 .row{
@@ -16,13 +27,11 @@ p, li{
     font-size: 14px;
 }
 
-main{
-    height: 100%;
-}
 
 .container-fluid{
     padding:0;
     margin-top: 7em;
+    margin-bottom: 7em;
 }
 
 
@@ -34,8 +43,8 @@ main{
     background-color: #202226;
     padding: 0em 2em;
     border: 1px solid #000000;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: .5em;
+    border-bottom-right-radius: .5em;
 }
 
 .navbar-brand{
@@ -343,7 +352,6 @@ main{
 /*Copy area*/
 
 #copy-area{
-    margin-top: 15px;
     background-color: #202226;
 }
 
@@ -479,3 +487,197 @@ input[type="radio"]{
     margin:0;
     float:right;
   }
+/* Se estiver logado, o menu suspenso */
+.dropdown{
+    margin: 0;
+    padding: 0;
+}
+
+#dropdownMenuLink{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    padding-top: 1.3em;
+    padding-bottom: 1.3em;
+    border-top: 3px solid #202226;
+    border-bottom: 3px solid #202226;
+    font-size: 14px;
+    color: white;
+}
+
+#dropdownMenuLink:focus{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.dropdown-menu{
+    background-color: #202226;
+    font-size: 12px;
+    padding-bottom: 0;
+    padding-top: 0;
+    border: 2px solid black;
+}
+
+.dropdown-item{
+    padding-top: .8em;
+    padding-bottom: .8em;
+    color: white;
+}
+
+.dropdown-divider{
+    margin: 0;
+    background-color: black;
+}
+
+.dropdown-item:active{
+    color: #202226;
+    background-color: #E5CD14;
+}
+
+/* Tela Meus-Dados */
+.title-view{
+    text-align: left;  
+    margin: 0;
+    padding:0;
+    color:#E5CD14 ;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    padding-top: .7em;
+    padding-bottom: .7em;
+}
+
+#btn-password{
+    font-size: 14px;
+    height: 100%;
+    width: auto;
+    margin-right: 0;
+}
+.align-right{
+    text-align: right;
+}
+.espaco-cima{
+    margin-top: 1em;
+}
+
+#btn-salvar{
+    font-size: 16px;
+    width: auto;
+    width: 30%;
+    min-height: 3em;
+    margin-top: 1em;
+}
+
+.col-md-12{
+    padding:0;
+}
+
+/* Modal */
+.modal-input{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: 1px solid black;
+}
+.modal-input:active{
+
+    background-color: white;
+}
+
+.modal-header{
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+.modal-title{
+    width: 100%;
+}
+
+.modal-footer{
+    border: none;
+}
+
+#title-endereco{
+    
+    padding-top: .7em;
+    padding-bottom: .7em;
+    font-size: 18px;
+}
+
+.enderecos{
+    margin: 0;
+    margin-top: 1em;
+    border-left: .5em solid #E5CD14;
+    background-color: #aa9a1fa4;
+    padding: 1em 2em;
+}
+
+.enderecos-left{
+    text-align: left;
+}
+.enderecos-right{
+    text-align: right;
+    padding: 0;
+}
+
+.enderecos p{
+    color:#202226;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    display: inline;
+    font-weight: 700;
+}
+.endereco-btn{
+    padding: 0;
+    margin: 0;
+    margin-left: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+.endereco-btn:focus{
+    box-shadow: none;
+}
+
+.relative{
+    position: relative;
+}
+
+.absolut{
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+    margin: 2em 1.5em;
+}
+
+.absolut i{
+    margin-right: .5em;
+}
+
+.modal-body{
+    text-align: center;
+}
+.modal-body input{
+    display: inline-block;
+}
+
+.end-numero{
+    width: 20%;
+}
+
+.end-comple{
+    width: 79%;
+}
+
+.end-uf{
+    width: 20%;
+}
+
+.end-cidade{
+    width: 79%;
+}
+
+.modal-input:read-only{
+    background-color: rgb(238, 238, 238);
+}

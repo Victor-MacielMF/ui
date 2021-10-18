@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <div class="container-fluid">
     
     <div id="navigation-area">
@@ -29,7 +30,7 @@
                                         <h1 class="title">
                                             Dados pessoais
                                         </h1>
-                                        <input type="text" class="form-control main-input espaco-embaixo" name="name" placeholder="Nome*" autocomplete="off" required>
+                                        <input type="text" class="form-control main-input espaco-embaixo" name="name" placeholder="Nome completo*" autocomplete="off" minlength="3" required>
                                         <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" name="cpf" value="{{$array['email']}}" autocomplete="off" readonly required>
                                         <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" name="cpf" value="{{$array['cpf']}}" autocomplete="off" readonly required>
                                         <input type="text" class="form-control main-input espaco-embaixo" name="rg" placeholder="RG*" autocomplete="off">
@@ -47,7 +48,7 @@
                                                 <INPUT TYPE="RADIO" NAME="sexo" VALUE="F"> <p>Feminino</p>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control main-input espaco-embaixo" id="nascimento" name="nascimento" placeholder="Data de Nascimento*" autocomplete="off" onkeypress="$(this).mask('00/00/0000')" required>
+                                        <input type="text" class="form-control main-input espaco-embaixo" id="nascimento" name="nascimento" placeholder="Data de Nascimento*" autocomplete="off" minlength="10" onkeypress="$(this).mask('00/00/0000')" required>
                                         <input type="text" class="form-control main-input" name="telefone" placeholder="Telefone para contato " onkeypress="$(this).mask('(00) 90000-0000')" autocomplete="off">
                                         
                                     </div>
@@ -65,7 +66,7 @@
                                         <input type="text" id="complemento-cad" class="form-control main-input espaco-embaixo" name="complemento" placeholder="Complemento" autocomplete="off">
                                         <input type="text" class="form-control main-input espaco-embaixo" name="bairro" placeholder="Bairro*" autocomplete="off" required>
                                         <input type="text" class="form-control main-input espaco-embaixo" name="referencia" placeholder="Referência" autocomplete="off">
-                                        <input type="text" id="cidade-cad" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cidade" name="cpf" value="{{$array['cidade']}}" autocomplete="off" readonly>
+                                        <input type="text" id="cidade-cad" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cidade" value="{{$array['cidade']}}" autocomplete="off" readonly>
                                         <input type="text" id="estado-cad" class="form-control main-input espaco-embaixo preenchimento-automatico" name="estado" value="{{$array['uf']}}" autocomplete="off" readonly>
                                         <p id="termos">Aqui vai ficar a parte de aceitar os termos de uso que ainda não foram desenvolvidos</p>
                                     </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\Alter;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +15,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('welcomeoriginal');
-});
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
 
 
 Route::get('/entrar',[LoginController::class, 'index']);
-Route::post('/andando',[RegisterController::class, 'Redirect']);
+Route::post('/registrar',[RegisterController::class, 'Redirect']);
 Route::post('/cadastrando',[RegisterController::class,'create']);
-
+Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
 

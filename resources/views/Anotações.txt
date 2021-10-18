@@ -1,21 +1,21 @@
-Todos os botões da navbar tem Hover e active, inclusive o login.
+Todos os botões da navbar tem Hover e active, inclusive o login. 
+A recuperação de senha não é prioritário.
 
-
-acho que vou tirar o esqueci meu login....
-Não vejo necessidade pois não tem o login por cpf.
-
-Ajustar o tamanho máximo da tela- criar uma nova vazia e colocar o fotter embaixo certinho de teste.
 
 
 login por redes sociais
 
-Se entrar no registrar pelo /registrar sem ser pelo login, crasha.
 
 
-Colocar os icones nos botões.
+Arrumar as mensagens quando dá errado.
 
+achar de onde está saindo /andando
+
+segurança para n conseguir a página andando se já estiver logado ou se n tiver informado as sessões iniciais
 
 <?php
 $value = "Test me more";
 echo strtok($value, " "); // Test
 ?>
+
+
