@@ -50,7 +50,7 @@
                 </div>
                 <div class="justify-contend-end">
                     @guest
-                        <a href="/login" class="nav-link {{(request () -> is ('entrar') || ('login') ||('registrar'))? 'active': ''}}" id="navbar-button"><i class="bi bi-person-circle"></i> Login </a>
+                        <a href="{{ route('login') }}" class="nav-link {{(request () -> is ('entrar') || ('login') ||('registrar'))? 'active': ''}}" id="navbar-button"><i class="bi bi-person-circle"></i> Login </a>
                     @else
                         <div class="dropdown show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
