@@ -20,8 +20,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Auth::routes();
 
-
-Route::get('/entrar',[LoginController::class, 'index']);
 Route::post('/registrar',[RegisterController::class, 'Redirect']);
 Route::post('/cadastrando',[RegisterController::class,'create']);
 Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
