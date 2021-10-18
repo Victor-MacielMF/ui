@@ -15,8 +15,10 @@ use App\Http\Controllers\Auth\Alter;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/', function () {
+    return view('usuario.teste');
+});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
