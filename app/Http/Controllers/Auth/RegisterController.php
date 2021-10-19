@@ -85,7 +85,7 @@ class RegisterController extends Controller
             /** Aqui eu pego o estado e a cidade através do cep */
             $results = simplexml_load_file("http://cep.republicavirtual.com.br/web_cep.php?formato=xml&cep=" . $request->get('cep'));
             /** Se der erro na consulta, volta no login */
-            if($results->resultado_txt != 'sucesso - cep único'){
+            if($results->resultado_txt == 'sucesso - cep não encontrado'){
                 return redirect('/login')->with('error', 'CEP inválido.');
             }else{
                 /** Criando a hash da senha */

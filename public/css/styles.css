@@ -479,6 +479,22 @@ input[type="radio"]{
     color: #b4b4b4;
     font-weight: bold;
 }
+
+.modal .preenchimento-automatico{
+    color: #b4b4b4;
+    font-weight: bold;
+}
+
+.modal .preenchimento-automatico:active{
+    color: #b4b4b4;
+    font-weight: bold;
+}
+
+.modal .preenchimento-automatico:focus{
+    color: #b4b4b4;
+    font-weight: bold;
+}
+
 .input-hidden{
     height:0;
     width:0;

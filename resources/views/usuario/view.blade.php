@@ -46,14 +46,14 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
-                        <input type="text" class="form-control modal-input espaco-embaixo" name="cep" value="{{$endereco->cep}}" autocomplete="off" readonly>
+                        <input type="text" class="form-control modal-input espaco-embaixo preenchimento-automatico" name="cep" value="{{$endereco->cep}}" autocomplete="off" readonly>
                         <input type="text" class="form-control modal-input espaco-embaixo" name="endereco" value="{{$endereco->endereco}}" placeholder="Endereço*" autocomplete="off" required>
                         <input type="text" class="form-control modal-input end-numero espaco-embaixo" name="numero" value="{{$endereco->numero}}" placeholder="Número*" autocomplete="off" required>
                         <input type="text" class="form-control modal-input end-comple" name="complemento" value="{{$endereco->complemento}}" placeholder="Complemento" autocomplete="off">
                         <input type="text" class="form-control modal-input espaco-embaixo" name="bairro" value="{{$endereco->bairro}}" placeholder="Bairro*" autocomplete="off" required>
                         <input type="text" class="form-control modal-input espaco-embaixo" name="referencia" value="{{$endereco->referencia}}" placeholder="Referencia" autocomplete="off">
-                        <input type="text" class="form-control modal-input end-cidade" name="cidade" value="{{$endereco->cidade}}" autocomplete="off" readonly>
-                        <input type="text" class="form-control modal-input end-uf" name="estado" value="{{$endereco->estado}}" autocomplete="off" readonly>
+                        <input type="text" class="form-control modal-input end-cidade preenchimento-automatico" name="cidade" value="{{$endereco->cidade}}" autocomplete="off" readonly>
+                        <input type="text" class="form-control modal-input end-uf preenchimento-automatico" name="estado" value="{{$endereco->estado}}" autocomplete="off" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="second-btn modal-btn cancelar-modal" data-dismiss="modal">Cancelar</button>
@@ -95,8 +95,8 @@
                     <input type="text" class="form-control modal-input espaco-embaixo" name="referencia " placeholder="Referência"/>
                     <div id="div-label-cidade"><label for="cidade">Cidade:</label></div>
                     <div id="div-label-estado"><label for="uf">Estado:</label><br></div>
-                    <input name="cidade" class="form-control modal-input end-cidade" name="cidade" type="text" id="cidade" size="40" readonly required/>
-                    <input class="form-control modal-input end-uf" name="estado" type="text"  id="uf" size="2" readonly required/>
+                    <input name="cidade" class="form-control modal-input end-cidade preenchimento-automatico" name="cidade" type="text" id="cidade" size="40" readonly required/>
+                    <input class="form-control modal-input end-uf preenchimento-automatico" name="estado" type="text"  id="uf" size="2" readonly required/>
                     
                     <input name="ibge" type="hidden" id="ibge" size="8" disabled/>
 
