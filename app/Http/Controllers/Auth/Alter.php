@@ -34,7 +34,8 @@ class Alter extends Controller
     }
 
     public function updateUser(Request $request){
-        $nascimento=date("Y/m/d", strtotime($request->nascimento));
+        $date = str_replace ( '/' , '-' , $request->nascimento);
+        $nascimento=date("Y/m/d", strtotime($date));
 
         $data = $request->all();
         $data['nascimento']=$nascimento;

@@ -136,9 +136,8 @@ class RegisterController extends Controller
             return redirect('/login')->with('error', 'Insira as informações corretamente.');
         }
 
-
-
-        $nascimento=date("Y/m/d", strtotime($data['nascimento']));
+        $date = str_replace ( '/' , '-' , $data['nascimento']);
+        $nascimento=date("Y/m/d", strtotime($date));
         $usuario =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
