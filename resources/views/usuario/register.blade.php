@@ -31,9 +31,9 @@
                                             Dados pessoais
                                         </h1>
                                         <input type="text" class="form-control main-input espaco-embaixo" name="name" placeholder="Nome completo*" autocomplete="off" minlength="3" required>
-                                        <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" name="cpf" value="{{$array['email']}}" autocomplete="off" readonly required>
-                                        <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" name="cpf" value="{{$array['cpf']}}" autocomplete="off" readonly required>
-                                        <input type="text" class="form-control main-input espaco-embaixo" name="rg" placeholder="RG*" autocomplete="off">
+                                        <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" value="{{$array['email']}}" autocomplete="off" readonly required>
+                                        <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" value="{{$array['cpf']}}" autocomplete="off" readonly required>
+                                        <input type="text" class="form-control main-input espaco-embaixo" name="rg" placeholder="Rg*" autocomplete="off" required>
                                         <div class="row row-sexo espaco-embaixo">
                                             <div class="col-md-12">
                                                 <h1 class="title" id="sexo">Sexo</h1>

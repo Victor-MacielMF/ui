@@ -17,5 +17,3 @@ segurança para n conseguir a página andando se já estiver logado ou se n tive
 $value = "Test me more";
 echo strtok($value, " "); // Test
 ?>
-
-

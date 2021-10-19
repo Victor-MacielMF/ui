@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Alter;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,7 @@ Route::post('/cadastrando',[RegisterController::class,'create']);
 Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
 Route::delete('/endereco/{id}', [Alter::class, 'destroy'])->middleware('auth');
 Route::put('/endereco/update/{id}', [Alter::class, 'updateAddress'])->middleware('auth');
+Route::put('/user/update/{id}', [Alter::class, 'updateUser'])->middleware('auth');
+Route::post('/add/address',[Alter::class,'storeAddress']);
+Route::get('change-password', [ChangePasswordController::class, 'index']);
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');

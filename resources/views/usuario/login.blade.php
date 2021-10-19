@@ -30,9 +30,9 @@
 
 
             {{-- Se tiver alguma mensagem de erro vai aparecer aqui --}}
-        @if ($errors->any() || session('msg'))
+            @if ($errors->any() || session('error'))
             <div class="alert alert-danger">
-                {{session('msg')}}
+                {{session('error')}}
                 @foreach ($errors->all() as $error)
                 <div class="row">
                     {{ $error }}.
@@ -40,7 +40,12 @@
                 @endforeach
 
             </div>
-        @endif
+            @endif
+            @if (session('info'))
+                <div class="alert alert-info">
+                    {{session('info')}}
+                </div>
+            @endif
 
 
             <div class="row">
@@ -53,7 +58,7 @@
                             </h1>
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
-                                <input id="email" type="email" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" alt="E-mail" required autocomplete="email" autofocus>
                                 <input id="password" type="password" class="form-control main-input" name="password" placeholder="Senha*" required minlength="8" autocomplete="current-password">
                                 <button type="submit" class="main-btn">
                                     <i class="bi bi-door-open-fill"></i>

@@ -188,7 +188,7 @@ p, li{
     -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
 
-#logcad-area .espaco-embaixo{
+.espaco-embaixo{
     margin-bottom: 1em;
 }
 
@@ -212,7 +212,7 @@ p, li{
 
 .main-btn:active{
     background-color:  #aa9a1f;
-    border: #aa9a1f;
+    border: 1px solid #aa9a1f;
     color: black;
 }
 
@@ -312,7 +312,7 @@ p, li{
     margin: 0;
 }
 
-#logcad-area .cep-col a{
+.cep-col a{
     float: right;
     clear: both;
     color: #707070;
@@ -574,13 +574,55 @@ input[type="radio"]{
 
 /* Modal */
 .modal-input{
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border: 1px solid black;
+    background-color: #202226;
+    color: white;
+    border:1.5px solid white;
+    border-radius: .4em;
 }
-.modal-input:active{
 
-    background-color: white;
+.modal-input:focus{
+    border: solid 1px #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    border:1.5px solid white;
+    background-color: #202226;
+    color: white;
+}
+
+.modal-input::placeholder{
+    font-weight: 500;
+    color: #707070;
+}
+
+.modal-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #202226 inset;
+}
+
+.modal-input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}
+
+
+.modal-btn{
+    width: auto;
+    margin-top: 0;
+    margin-left: .5em;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
+.cancelar-modal:hover{
+    background-color: transparent;
+    color: #E5CD14;;
+}
+.cancelar-modal:active{
+    background-color: transparent;
+    color: #E5CD14;
+    border: 2px solid #E5CD14 ;
 }
 
 .modal-header{
@@ -596,7 +638,78 @@ input[type="radio"]{
 .modal-footer{
     border: none;
 }
+.modal-content{
+    background-color:#202226;
+}
 
+.modal-content{
+    color: white;
+    border: black 1px solid;
+    border-radius: .7em;
+}
+
+.modal-header{
+    padding: 1.5em;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #E5CD14;
+    font-weight: bold;
+}
+.modal-footer{
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+}
+
+.modal-backdrop
+{
+    opacity:0.8 !important;
+}
+
+.modal-body{
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.modal-body input{
+    display: inline-block;
+}
+
+.end-numero{
+    width: 20%;
+}
+
+.end-comple{
+    width: 79%;
+}
+
+.end-uf{
+    width: 20%;
+}
+
+.end-cidade{
+    width: 79%;
+}
+
+.modal-input:read-only{
+    background-color: #202226;
+}
+
+.inline{
+    display: inline-block;
+}
+
+#div-label-cidade{
+    width: 79%;
+    display: inline-block;
+    text-align: left;
+}
+
+#div-label-estado{
+    width: 20%;
+    display: inline-block;
+    text-align: left;
+}
+/* */
 #title-endereco{
     
     padding-top: .7em;
@@ -655,33 +768,3 @@ input[type="radio"]{
     margin-right: .5em;
 }
 
-.modal-body{
-    text-align: center;
-}
-.modal-body input{
-    display: inline-block;
-}
-
-.end-numero{
-    width: 20%;
-}
-
-.end-comple{
-    width: 79%;
-}
-
-.end-uf{
-    width: 20%;
-}
-
-.end-cidade{
-    width: 79%;
-}
-
-.modal-input:read-only{
-    background-color: rgb(238, 238, 238);
-}
-
-.inline{
-    display: inline-block;
-}

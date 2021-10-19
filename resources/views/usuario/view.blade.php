@@ -17,16 +17,19 @@
             <div class="modal-header">
                 <h5 class="modal-title">Alterar senha</h5>
             </div>
-            <div class="modal-body">
-                Informe a nova senha para a sua conta
-                <input type="password" class="form-control modal-input" name="password" placeholder="Digite a sua senha atual*" autocomplete="off" required minlength="8">
-                <input type="password" class="form-control modal-input" name="password" placeholder="Digite a nova senha*" autocomplete="off" required minlength="8">
-                <input type="password" class="form-control modal-input" name="password" placeholder="Confirme a nova senha*" autocomplete="off" required minlength="8">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
+            <form action="{{ route('change.password') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+                    <input type="password" class="form-control modal-input espaco-embaixo" name="current_password" placeholder="Digite a senha atual*" autocomplete="off" required minlength="8">
+                    <input type="password" class="form-control modal-input espaco-embaixo" name="new_password" placeholder="Digite a nova senha*" autocomplete="off" required minlength="8">
+                    <input type="password" class="form-control modal-input" name="new_confirm_password" placeholder="Confirme a nova senha*" autocomplete="off" required minlength="8">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="second-btn modal-btn cancelar-modal" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="main-btn modal-btn">Salvar</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -43,18 +46,18 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
-                        <input type="text" class="form-control modal-input" name="cep" value="{{$endereco->cep}}" autocomplete="off" readonly>
-                        <input type="text" class="form-control modal-input" name="endereco" value="{{$endereco->endereco}}" autocomplete="off" required>
-                        <input type="text" class="form-control modal-input end-numero" name="numero" value="{{$endereco->numero}}" autocomplete="off" required>
-                        <input type="text" class="form-control modal-input end-comple" name="complemento" value="{{$endereco->complemento}}" autocomplete="off">
-                        <input type="text" class="form-control modal-input" name="bairro" value="{{$endereco->bairro}}" autocomplete="off" required>
-                        <input type="text" class="form-control modal-input" name="referencia" value="{{$endereco->referencia}}" autocomplete="off">
+                        <input type="text" class="form-control modal-input espaco-embaixo" name="cep" value="{{$endereco->cep}}" autocomplete="off" readonly>
+                        <input type="text" class="form-control modal-input espaco-embaixo" name="endereco" value="{{$endereco->endereco}}" placeholder="Endereço*" autocomplete="off" required>
+                        <input type="text" class="form-control modal-input end-numero espaco-embaixo" name="numero" value="{{$endereco->numero}}" placeholder="Número*" autocomplete="off" required>
+                        <input type="text" class="form-control modal-input end-comple" name="complemento" value="{{$endereco->complemento}}" placeholder="Complemento" autocomplete="off">
+                        <input type="text" class="form-control modal-input espaco-embaixo" name="bairro" value="{{$endereco->bairro}}" placeholder="Bairro*" autocomplete="off" required>
+                        <input type="text" class="form-control modal-input espaco-embaixo" name="referencia" value="{{$endereco->referencia}}" placeholder="Referencia" autocomplete="off">
                         <input type="text" class="form-control modal-input end-cidade" name="cidade" value="{{$endereco->cidade}}" autocomplete="off" readonly>
                         <input type="text" class="form-control modal-input end-uf" name="estado" value="{{$endereco->estado}}" autocomplete="off" readonly>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="button" class="second-btn modal-btn cancelar-modal" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="main-btn modal-btn">Salvar</button>
                     </div>
                 </form>
                 </div>
@@ -69,20 +72,40 @@
             <div class="modal-header">
                 <h5 class="modal-title">Cadastrar novo endereço</h5>
             </div>
-            <div class="modal-body">
-                <input type="text" class="form-control modal-input" name="cep" placeholder="cep" value="" autocomplete="off" >
-                <input type="text" class="form-control modal-input" name="endereco" placeholder="Endereço*" autocomplete="off" required>
-                <input type="text" class="form-control modal-input end-numero" name="numero" placeholder="Número*" autocomplete="off" required>
-                <input type="text" class="form-control modal-input end-comple" name="complemento" placeholder="Complemento" autocomplete="off">
-                <input type="text" class="form-control modal-input" name="bairro" placeholder="Bairro*" autocomplete="off" required>
-                <input type="text" class="form-control modal-input" name="referencia" placeholder="Referência" autocomplete="off">
-                <input type="text" class="form-control modal-input end-cidade" name="cidade" value="" autocomplete="off" >
-                <input type="text" class="form-control modal-input end-uf" name="estado" value="" autocomplete="off" >
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
+            <form method="POST" action="/add/address">
+                @csrf
+                <div class="modal-body">
+
+                    <input name="cep" class="form-control modal-input" type="text" id="cep" value="" onkeypress="$(this).mask('00.000-000')" minlength="10"
+                    onblur="pesquisacep(this.value);" placeholder="Cep*" required/>
+                    
+                    <div class="col-md-12 cep-col">
+                        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php"  target="_blank" class="cep-link" > Não sei meu CEP <i class="bi bi-question-circle-fill"></i></a>
+                    </div>
+                               
+                    
+                    <input class="form-control modal-input espaco-embaixo" name="endereco" placeholder="Endereço*" type="text" id="rua" size="60" required/>
+
+                    <input type="text" class="form-control modal-input end-numero espaco-embaixo" name="numero" placeholder="Número*" required/>
+
+                    <input type="text" class="form-control modal-input end-comple" name="complemento" placeholder="Complemento"/>
+                    
+                    <input name="bairro" class="form-control modal-input espaco-embaixo" name="bairro" placeholder="Bairro*" type="text" id="bairro" size="40" required/>
+
+                    <input type="text" class="form-control modal-input espaco-embaixo" name="referencia " placeholder="Referência"/>
+                    <div id="div-label-cidade"><label for="cidade">Cidade:</label></div>
+                    <div id="div-label-estado"><label for="uf">Estado:</label><br></div>
+                    <input name="cidade" class="form-control modal-input end-cidade" name="cidade" type="text" id="cidade" size="40" readonly required/>
+                    <input class="form-control modal-input end-uf" name="estado" type="text"  id="uf" size="2" readonly required/>
+                    
+                    <input name="ibge" type="hidden" id="ibge" size="8" disabled/>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="second-btn modal-btn cancelar-modal" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="main-btn modal-btn">Cadastrar</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -97,6 +120,23 @@
     </div>
     <div id="logcad-area">
         <div class="container">
+            {{-- Se tiver alguma mensagem de erro vai aparecer aqui --}}
+            @if ($errors->any() || session('error'))
+            <div class="alert alert-danger">
+                {{session('error')}}
+                @foreach ($errors->all() as $error)
+                <div class="row">
+                    {{ $error }}.
+                </div>
+                @endforeach
+
+            </div>
+            @endif
+            @if (session('info'))
+                <div class="alert alert-info">
+                    {{session('info')}}
+                </div>
+            @endif
             <div class="col-md-12">
                 <div class="row">
                     {{-- Dados básicos --}}
@@ -113,31 +153,35 @@
                                         {{ __('Alterar senha') }}
                                     </button>
                                 </div>
-                                <input type="text" class="form-control main-input espaco-embaixo espaco-cima" name="name" value="{{$user->name}}" autocomplete="off" minlength="3" required>
-                                <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" name="cpf" value="{{$user->email}}" autocomplete="off" readonly required>
-                                <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" name="cpf" value="{{$user->cpf}}" autocomplete="off" readonly required>
-                                <input type="text" class="form-control main-input espaco-embaixo" name="rg" value="{{$user->rg}}" autocomplete="off">
-                                <div class="row row-sexo espaco-embaixo">
-                                    <div class="col-md-12">
-                                        <h1 class="title" id="sexo">Sexo</h1>
+                                <form action="/user/update/{{$user->id}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" class="form-control main-input espaco-embaixo espaco-cima" name="name" placeholder="Nome completo*" value="{{$user->name}}" autocomplete="off" minlength="3" required >
+                                    <input type="email" class="form-control main-input espaco-embaixo preenchimento-automatico" name="email" value="{{$user->email}}" autocomplete="off" readonly required>
+                                    <input type="text" class="form-control main-input espaco-embaixo preenchimento-automatico" name="cpf" value="{{$user->cpf}}" autocomplete="off" readonly required>
+                                    <input type="text" class="form-control main-input espaco-embaixo" name="rg" value="{{$user->rg}}" placeholder="Rg*" alt="Rg" autocomplete="off" required>
+                                    <div class="row row-sexo espaco-embaixo">
+                                        <div class="col-md-12">
+                                            <h1 class="title" id="sexo">Sexo</h1>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <INPUT TYPE="RADIO"  NAME="sexo" VALUE="I" {{ ($user->sexo=="I")? "checked" : "" }}> <p>Não informar</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <INPUT TYPE="RADIO"  NAME="sexo" VALUE="M" {{ ($user->sexo=="M")? "checked" : "" }}> <p>Masculino</p>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <INPUT TYPE="RADIO" NAME="sexo" VALUE="F" {{ ($user->sexo=="F")? "checked" : "" }}> <p>Feminino</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <INPUT TYPE="RADIO"  NAME="sexo" VALUE="I" {{ ($user->sexo=="I")? "checked" : "" }}> <p>Não informar</p>
+                                    <input type="text" class="form-control main-input espaco-embaixo" id="nascimento" name="nascimento" value="{{ date('d/m/Y', strtotime($user->nascimento)) }}" placeholder="Data de Nascimento*" autocomplete="off" minlength="10" onkeypress="$(this).mask('00/00/0000')" required>
+                                    <input type="text" class="form-control main-input" name="telefone" value="{{$user->telefone}}" onkeypress="$(this).mask('(00) 90000-0000')" placeholder="Telefone para contato" autocomplete="off">
+                                    <div class="col-md-12 align-right">
+                                        <button type="submit" class="main-btn" id="btn-salvar">
+                                            {{ __('Salvar') }}
+                                        </button>
                                     </div>
-                                    <div class="col-md-4">
-                                        <INPUT TYPE="RADIO"  NAME="sexo" VALUE="M" {{ ($user->sexo=="M")? "checked" : "" }}> <p>Masculino</p>
-                                    </div>
-                                    <div class="col-md-4 ">
-                                        <INPUT TYPE="RADIO" NAME="sexo" VALUE="F" {{ ($user->sexo=="F")? "checked" : "" }}> <p>Feminino</p>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control main-input espaco-embaixo" id="nascimento" name="nascimento" value="{{ date('d/m/Y', strtotime($user->nascimento)) }}" autocomplete="off" minlength="10" onkeypress="$(this).mask('00/00/0000')" required>
-                                <input type="text" class="form-control main-input" name="telefone" value="{{$user->telefone}}" onkeypress="$(this).mask('(00) 90000-0000')" autocomplete="off">
-                                <div class="col-md-12 align-right">
-                                    <button type="submit" class="main-btn" id="btn-salvar">
-                                        {{ __('Salvar') }}
-                                    </button>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

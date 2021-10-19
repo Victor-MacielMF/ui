@@ -75,7 +75,7 @@ class RegisterController extends Controller
     }else{
         /** Verificando se digitou a senha corretamente */
         if($request->password != $request->password_confirmation ){
-            return redirect('/login')->with('msg', 'As senhas não coincidem.');
+            return redirect('/login')->with('error', 'As senhas não coincidem.');
         } else { 
             /** Validando o CPF e o Email, se der errado redireciona automaticamente para onde o usuário estava. (['msg'=>$request->password,'email'=>$request->cpf]);   */
             $this->validate($request, [
@@ -86,7 +86,7 @@ class RegisterController extends Controller
             $results = simplexml_load_file("http://cep.republicavirtual.com.br/web_cep.php?formato=xml&cep=" . $request->get('cep'));
             /** Se der erro na consulta, volta no login */
             if($results->resultado_txt != 'sucesso - cep único'){
-                return redirect('/login')->with('msg', 'CEP inválido.');
+                return redirect('/login')->with('error', 'CEP inválido.');
             }else{
                 /** Criando a hash da senha */
                 $array=array('email'=>$request->email,'cpf'=>$request->cpf,'cep'=>$request->cep,
@@ -133,7 +133,7 @@ class RegisterController extends Controller
             'bairro' => 'required'
         ]);
         if ($validation->fails()) {
-            return redirect('/login')->with('msg', 'Insira as informações corretamente.');
+            return redirect('/login')->with('error', 'Insira as informações corretamente.');
         }
 
 
