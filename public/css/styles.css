@@ -651,9 +651,6 @@ input[type="radio"]{
     width: 100%;
 }
 
-.modal-footer{
-    border: none;
-}
 .modal-content{
     background-color:#202226;
 }
@@ -672,9 +669,26 @@ input[type="radio"]{
     font-weight: bold;
 }
 .modal-footer{
+    border: none;
     padding-bottom: 1.5em;
     padding-top: 1.5em;
 }
+
+
+.modal-body .main-btn{
+    width: 25%;
+    margin-bottom: 1.5em;
+}
+
+.modal-body .second-btn{
+    width: 25%;
+    margin-bottom: 1.5em;
+}
+
+.modal-footer button{
+    width: 15%;
+}
+
 
 .modal-backdrop
 {
@@ -782,14 +796,4 @@ input[type="radio"]{
 
 .absolut i{
     margin-right: .5em;
-}
-
-.modal-body .main-btn{
-    width: 25%;
-    margin-bottom: 1.5em;
-}
-
-.modal-body .second-btn{
-    width: 25%;
-    margin-bottom: 1.5em;
 }
