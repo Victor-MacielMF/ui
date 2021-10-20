@@ -784,3 +784,12 @@ input[type="radio"]{
     margin-right: .5em;
 }
 
+.modal-body .main-btn{
+    width: 25%;
+    margin-bottom: 1.5em;
+}
+
+.modal-body .second-btn{
+    width: 25%;
+    margin-bottom: 1.5em;
+}

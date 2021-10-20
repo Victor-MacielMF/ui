@@ -65,6 +65,27 @@
         </div> 
     @endforeach
 
+    {{--Modal Excluir Endereço--}}
+    @foreach ($enderecos as $endereco)
+    <div class="modal fade" id="delete-address-{{$endereco->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tem certeza que deseja excluir este endereço?</h5>
+            </div>
+            <form action="/endereco/{{$endereco->id}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <button type="button" class="second-btn modal-btn cancelar-modal" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="main-btn modal-btn">Excluir</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
     {{--Modal Cadastrar Endereço--}}
     <div class="modal fade" id="Add-address" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -213,11 +234,7 @@
                                         <div class="enderecos-right">
                                             <button class="btn endereco-btn" data-toggle="modal" data-target="#alter-address-{{$endereco->id}}">Editar</button>
                                             @if (count($enderecos)>1)
-                                                <form action="/endereco/{{$endereco->id}}" method="POST" class="inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn endereco-btn">Excluir</button>
-                                                </form>
+                                                <button class="btn endereco-btn" data-toggle="modal" data-target="#delete-address-{{$endereco->id}}">Excluir</button>
                                             @endif
                                         </div>
                                     </div>
