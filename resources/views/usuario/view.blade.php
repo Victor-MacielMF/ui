@@ -139,6 +139,7 @@
             </h1>
         </div>
     </div>
+    
     <div id="logcad-area">
         <div class="container">
             {{-- Se tiver alguma mensagem de erro vai aparecer aqui --}}
@@ -208,8 +209,8 @@
                     </div>
 
                     {{-- Endereços --}}
-                    <div class="col-md-6 relative" id = "rightbox">
-                        <div class="logcad right">
+                    <div class="col-md-6" id = "rightbox">
+                        <div class="logcad right relative">
                             <div class="row">
                                 <h1 class="title" id="title-endereco">
                                     Endereços
@@ -239,17 +240,17 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-                                @if (count($enderecos)<2)
-                                    <div class="col-md-12 ">
-                                        <button type="submit" class="main-btn absolut" id="btn-salvar" data-toggle="modal" data-target="#Add-address">
-                                            <i class="bi bi-plus-circle-fill"></i>
-                                            {{ __('Novo Endereço') }}
-                                        </button>
-                                    </div>
-                                @endif
                             </div>
                         </div>
+                        
+                        @if (count($enderecos)<2)
+                            <div class="col-md-12 ">
+                                <button type="submit" class="main-btn absolut" id="btn-salvar" data-toggle="modal" data-target="#Add-address">
+                                    <i class="bi bi-plus-circle-fill"></i>
+                                    {{ __('Novo Endereço') }}
+                                </button>
+                            </div>
+                        @endif
                     </div>
 
                 </div>

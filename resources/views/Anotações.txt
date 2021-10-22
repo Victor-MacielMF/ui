@@ -1,19 +1,13 @@
-Todos os botões da navbar tem Hover e active, inclusive o login. 
+/******** Caprichos ********/
+
 A recuperação de senha não é prioritário.
+justificativa do por que ainda n tem login por redes sociais - precisa de termos de uso do site
+login por redes sociais.
 
+Se o vendedor não tiver mais produtos, colocar : Produtos recomendados
 
+/******** Necessário ********/
+Validar o E-mail
+Arrumar a mensagem de erro quando vai mudar a senha e digita errado a confirmação.
 
-login por redes sociais
-
-
-
-Arrumar as mensagens quando dá errado.
-
-achar de onde está saindo /andando
-
-segurança para n conseguir a página andando se já estiver logado ou se n tiver informado as sessões iniciais
-
-<?php
-$value = "Test me more";
-echo strtok($value, " "); // Test
-?>
+/******** Urgente ********/

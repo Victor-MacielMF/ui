@@ -67,3 +67,17 @@ function pesquisacep(valor) {
         limpa_formulário_cep();
     }
 };
+$('select[name=things]').change(function() {
+    if ($(this).val() == '')
+    {
+        var newThing = prompt('Enter a name for the new thing:');
+        var newValue = $('option', this).length;
+        $('<option>')
+            .text(newThing)
+            .attr('value', newValue)
+            .insertBefore($('option[value=]', this));
+        $(this).val(newValue);
+    }
+});
+
+

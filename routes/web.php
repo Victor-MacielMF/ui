@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Alter;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\ChangePasswordController;
 |
 */
 Route::get('/', function () {
-    return view('usuario.teste');
+    return view('home');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -25,10 +26,15 @@ Auth::routes();
 
 Route::post('/registrar',[RegisterController::class, 'Redirect']);
 Route::post('/cadastrando',[RegisterController::class,'create']);
+Route::get('/produto', [ProdutoController::class,'index']);
+
+
+
+
 Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
 Route::delete('/endereco/{id}', [Alter::class, 'destroy'])->middleware('auth');
 Route::put('/endereco/update/{id}', [Alter::class, 'updateAddress'])->middleware('auth');
 Route::put('/user/update/{id}', [Alter::class, 'updateUser'])->middleware('auth');
-Route::post('/add/address',[Alter::class,'storeAddress']);
-Route::get('change-password', [ChangePasswordController::class, 'index']);
-Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
+Route::post('/add/address',[Alter::class,'storeAddress'])->middleware('auth');;
+Route::get('change-password', [ChangePasswordController::class, 'index'])->middleware('auth');;
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password')->middleware('auth');;
