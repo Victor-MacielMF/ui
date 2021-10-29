@@ -15,5 +15,5 @@
 <br>
 <br>
 <br>
-<h1 class="main-title">Home</h1>
+
 @endsection

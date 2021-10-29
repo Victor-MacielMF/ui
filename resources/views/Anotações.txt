@@ -3,6 +3,7 @@
 A recuperação de senha não é prioritário.
 justificativa do por que ainda n tem login por redes sociais - precisa de termos de uso do site
 login por redes sociais.
+colocar os centavos em <sup>
 
 Se o vendedor não tiver mais produtos, colocar : Produtos recomendados
 
@@ -11,3 +12,41 @@ Validar o E-mail
 Arrumar a mensagem de erro quando vai mudar a senha e digita errado a confirmação.
 
 /******** Urgente ********/
+
+soplkseoçitrt0p8u=-67o709eu5r87wq3
+
+tenho que fazer uma ligação da compatibildiade com o produto
+
+vender/meus-dados
+
+
+
+
+                            <div class="carousel-inner">
+                                
+                                @foreach ($produto->imagens as $imagem)
+                                <div class="carousel-item active" style="background-image: url(/img/produtos/{{$imagem->imagem}});">
+                                </div>
+                                @endforeach
+                            </div>
+                            <ol class="carousel-indicators">
+                                {{$indice=0}}
+                                @foreach ($produto->imagens as $imagem)
+                                    @if ($indice==0)
+                                        <li data-target="#carousel" data-slide-to="{{$indice}}" class="indicator active"></li>
+                                    @else
+                                        <li data-target="#carousel" data-slide-to="{{$indice}}" class="indicator"></li>
+                                    @endif
+                                    {{$indice+=1}}
+                                @endforeach
+                            </ol>
+
+                            permitir centavos'
+
+                            faltou a quatnidade
+
+                            pra fazer update é só dropar tudo quando clicar em salvar e contar quantos componentes tem o produto,
+                            e fazer um loop com o indice
+                            feito isso é só fazer oque eu já fiz.
+
+                            colocar compatiblidade com produto para poder excluir

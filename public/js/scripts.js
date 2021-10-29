@@ -79,5 +79,3 @@ $('select[name=things]').change(function() {
         $(this).val(newValue);
     }
 });
-
-

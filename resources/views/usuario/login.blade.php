@@ -99,11 +99,8 @@
                                 Quero me cadastrar
                             </h1>
                         </div>
-                        <form action="/registrar" method="POST" >
+                        <form action="/registrar" method="POST">
                             @csrf
-
-
-
                             <input type="email" class="form-control main-input espaco-embaixo" name="email" placeholder="E-mail*" autocomplete="off" required>
                             <input type="password" class="form-control main-input espaco-embaixo" name="password" placeholder="Senha*" autocomplete="off" required minlength="8">
                             <input type="password" class="form-control main-input espaco-embaixo" name="password_confirmation" placeholder="Confirme a senha*" autocomplete="off" required minlength="8">
@@ -124,6 +121,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

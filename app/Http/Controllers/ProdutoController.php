@@ -2,11 +2,252 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CaracOpcao;
+use App\Models\CaracOpcaoProdutoCarac;
+use App\Models\Caracteristica;
+use App\Models\Comentario;
+use App\Models\ComentarioResposta;
+use App\Models\Compatibilidade;
+use App\Models\Produto;
+use App\Models\ProdutoCarac;
+use App\Models\ProdutoImagem;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
+use function Psy\debug;
 
 class ProdutoController extends Controller
 {
     public function index (){
-        return view('produto.view');
+    }
+
+    public function show ($id){
+        $produto = Produto::findOrFail($id);
+        $caracteristicas = $produto->caracteristicas;
+        return view('produto.show',['produto'=>$produto,'caracteristicas'=>$caracteristicas]);
+
+                        //$login['success']= false;
+                //$login['message'] = 'CEP inválido.';
+                //echo json_encode($login);
+                //return;
+    }
+
+    public function selecionou (Request $request){
+        $data = $request->all();
+        //$compatibilidades = Compatibilidade::where(['carac_opcao_produto_carac_id'=>$data['id']])->get();
+
+
+        $compatibilidade = DB::table('compatibilidades')->where('carac_opcao_produto_carac_id','=',$data['id'])->get();
+
+
+            echo json_encode($compatibilidade);
+            return;
+        
+        //
+        //echo json_encode($compatibilidades);
+    }
+
+    public function selecionado (Request $request){
+        $data = $request->all();
+        $preco=DB::table('carac_opcao_produto_carac')->where('id','=',$data['id'])->get();
+        echo json_encode($preco);
+        return;
+    }
+
+    public function comentar (Request $request){
+        $user = auth()->user();
+        $comentario = new Comentario;
+        $comentario->comentario = $request->pergunta;
+        $comentario->produto_id = $request->produto;
+        $comentario->user_id = $user->id;
+
+        $comentario->save();
+        return Redirect::back();
+    }
+
+    public function responder (Request $request){
+        $user = auth()->user();
+        $comentario = new ComentarioResposta;
+        $comentario->comentario = $request->pergunta;
+        $comentario->comentario_id = $request->comentario;
+        $comentario->user_id=$user->id;
+
+        $comentario->save();
+        return Redirect::back();
+    }
+
+    public function excluirPergunta ($id){
+        Comentario::findOrFail($id)->delete();
+        return Redirect::back();
+    }
+
+    public function excluirResposta ($id){
+        ComentarioResposta::findOrFail($id)->delete();
+        return Redirect::back();
+    }
+
+    public function choose(){
+        return view('produto.choose');
+    }
+
+    public function venderProduto(){
+        return view('produto.venderProduto');
+    }
+
+    public function caracteristicaProduto($id){
+        $user = auth()->user();
+        $produto=Produto::findOrFail($id);
+        if(($produto->user_id!=$user->id)&&($produto->pendente!=1)){
+            return redirect('/home');
+        }else{
+            return view('produto.caracProduto',['produto'=>$produto]);
+        }
+    }
+
+    public function storeProduto(Request $request){
+        if($request->componentes == "S"){
+            //tem componentes
+            $user = auth()->user();
+            $produto=  new Produto;
+            $produto->user_id = $user->id;
+            $produto->nome =$request->titulo;
+            $produto->pendente=1;
+            $produto->save();
+    
+            $idProduto=$produto->id;
+    
+            
+            $input=$request->all();
+            $images=array();
+            $files=$request->file('imagens');
+            if($files){
+                foreach($files as $file){
+                    $extension = $file->extension();
+                    $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
+                    $file->move(public_path('img/produtos'), $imageName);
+    
+                    $imagem= new ProdutoImagem;
+                    $imagem->imagem = $imageName;
+                    $imagem->produto_id = $idProduto;
+                    
+                    $imagem->save();
+                }
+            }
+    
+            return view('produto.caracProduto',['produto'=>$produto]);
+            //return redirect('/produto/caracteristicas/'.$idProduto)->with( ['informacao' => $produto] );;
+
+
+        }else{
+            //Não tem componentes
+            $user = auth()->user();
+            $produto=  new Produto;
+            $produto->user_id = $user->id;
+            $produto->nome =$request->titulo;
+            $produto->descricao = $request->descricao;
+            $produto->descricao_simplificada = $request->descricao_simplificada;
+            $produto->preco=$request->preco;
+            $produto->quantidade=$request->quantidade;
+            $produto->pendente=0;
+    
+            $produto->save();
+    
+            $idProduto=$produto->id;
+    
+            
+            $input=$request->all();
+            $images=array();
+            $files=$request->file('imagens');
+            if($files){
+                foreach($files as $file){
+                    $extension = $file->extension();
+                    $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
+                    $file->move(public_path('img/produtos'), $imageName);
+    
+                    $imagem= new ProdutoImagem;
+                    $imagem->imagem = $imageName;
+                    $imagem->produto_id = $idProduto;
+                    
+                    $imagem->save();
+                }
+            }
+    
+            return redirect('/');
+
+        }
+
+    }
+
+    public function storeCaracteristica(Request $request){
+        $first = array('doh', 'ray', 'me');
+        //é isso, a cada rodada eu vou perguntar isso por meio de um indice com o nome do array
+        //dd($request->has('compatibilidade'));
+        
+        $user = auth()->user();
+        $produto=Produto::findOrFail($request->produto_id);
+        if($produto->user_id==$user->id){
+            $caracteristica= new Caracteristica;
+            $caracProduto= new ProdutoCarac;
+            $caracteristica->nome=$request->nome_caracteristica;
+            $caracteristica->save();
+            $caracProduto->produto_id=$produto->id;
+            $caracProduto->caracteristica_id=$caracteristica->id;
+            $caracProduto->save();
+            $count = count($request->opcao);
+
+            $compPrimaria = array();
+            $compSecundaria = array();
+
+            $count2=0;
+            if($request->has('compatibilidade')){
+                $count2 = count($request->compatibilidade);
+                for ($i=0; $i < $count2; $i++) { 
+                    $variavel=$request->compatibilidade[$i];
+                    $dividido=explode(".", $variavel);
+                    array_push($compPrimaria,$dividido[0]);
+                    array_push($compSecundaria,$dividido[1]);
+                }
+            }
+            for ($i=0; $i < $count; $i++) { 
+                $caracOpcao= new CaracOpcao;
+                $caracOpcao->caracteristica_id=$caracteristica->id;
+                $caracOpcao->nome=$request->opcao[$i];
+                $caracOpcao->save();
+                //teste para ver se desse modo eu consigo cadastrar a opção pelo attach. Antes disso eu n fiz nada para que isso aconteça
+                $formatando=preg_replace("/[^0-9,]/", "", $request->preco[$i]);
+                $formatado=str_replace(',', '.', $formatando);
+
+                $caracProduto->opcoes_real()->attach($caracOpcao->id,[
+                    'preco' => $formatado,
+                    'quantidade' => $request->qtd[$i]
+                ]);
+
+
+                for ($a=0; $a < $count2; $a++) {
+                    if($compPrimaria[$a]==$i){
+                        foreach($caracProduto->opcoes_real as $opcao){
+                            $compatibilidade= new Compatibilidade;
+                            $compatibilidadeReversa= new Compatibilidade;
+
+                            $compatibilidade->carac_opcao_produto_carac_id =  $opcao->pivot->id;
+                            $compatibilidade->carac_opcao_produto_carac_c_id = $compSecundaria[$a];
+                            $compatibilidade->produto_id = $produto->id;
+
+                            $compatibilidadeReversa->carac_opcao_produto_carac_id =  $compSecundaria[$a];
+                            $compatibilidadeReversa->carac_opcao_produto_carac_c_id = $opcao->pivot->id;
+                            $compatibilidadeReversa->produto_id = $produto->id;
+
+                            $compatibilidade->save();
+                            $compatibilidadeReversa->save();
+                        }
+                    }
+                }
+                
+
+            }
+        }
+
     }
 }

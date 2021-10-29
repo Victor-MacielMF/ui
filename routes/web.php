@@ -27,7 +27,9 @@ Auth::routes();
 Route::post('/registrar',[RegisterController::class, 'Redirect']);
 Route::post('/cadastrando',[RegisterController::class,'create']);
 Route::get('/produto', [ProdutoController::class,'index']);
-
+Route::get('/produto/{id}', [ProdutoController::class, 'show'])->name('/produto/{id}');
+Route::get('/selecionou', [ProdutoController::class, 'selecionou']);
+Route::get('/selecionado', [ProdutoController::class, 'selecionado']);
 
 
 
@@ -35,6 +37,17 @@ Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
 Route::delete('/endereco/{id}', [Alter::class, 'destroy'])->middleware('auth');
 Route::put('/endereco/update/{id}', [Alter::class, 'updateAddress'])->middleware('auth');
 Route::put('/user/update/{id}', [Alter::class, 'updateUser'])->middleware('auth');
-Route::post('/add/address',[Alter::class,'storeAddress'])->middleware('auth');;
-Route::get('change-password', [ChangePasswordController::class, 'index'])->middleware('auth');;
-Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password')->middleware('auth');;
+Route::post('/add/address',[Alter::class,'storeAddress'])->middleware('auth');
+Route::get('change-password', [ChangePasswordController::class, 'index'])->middleware('auth');
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password')->middleware('auth');
+Route::post('/comentar',[ProdutoController::class,'comentar'])->middleware('auth');
+Route::post('/responder',[ProdutoController::class,'responder'])->middleware('auth');
+Route::delete('/pergunta/excluir/{id}', [ProdutoController::class, 'excluirPergunta'])->middleware('auth');
+Route::delete('/resposta/excluir/{id}', [ProdutoController::class, 'excluirResposta'])->middleware('auth');
+Route::get('/escolha', [ProdutoController::class, 'choose'])->middleware('auth');
+Route::get('/vender/produto',[ProdutoController::class, 'venderProduto'])->middleware('auth');
+Route::get('/produto/caracteristica/{id}',[ProdutoController::class, 'caracteristicaProduto'])->name('/produto/caracteristica/{id}')->middleware('auth');
+
+Route::post('/produto/cadastrar',[ProdutoController::class,'storeProduto'])->middleware('auth')->name('storeProduto');
+Route::post('/produto/cadastrar/caracteristica',[ProdutoController::class,'storeCaracteristica'])->middleware('auth')->name('storeCaracteristica');
+

@@ -7,25 +7,26 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonte -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap') }}" rel="stylesheet">
     <!-- Estilos -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css') }}">
+    <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <!-- Scripts -->
     <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    src="{{ asset('https://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js') }}"></script>
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css') }}">
     <!-- Progress Bar -->
-    <script src="js/progressbar.min.js"></script>
+    <script src="{{ asset('js/progressbar.min.js') }}"></script>
     <!-- Parallax -->
-    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js') }}"></script>
 </head>
 <body>
     
@@ -41,9 +42,9 @@
                 </a>
                 <div class="collapse navbar-collapse justify-content-center" id="navbar-links">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" id="products-menu" href="/produto">Produtos</span></a>
-                        <a class="nav-item nav-link" id="services-menu" href="#">Serviços</a>
-                        <a class="nav-item nav-link" id="sell-menu" href="#">Vender</a>
+                        <a class="nav-item nav-link" id="products-menu" href="/escolha">Produtos</span></a>
+                        <a class="nav-item nav-link" id="services-menu" href="/produto/1">Serviços</a>
+                        <a class="nav-item nav-link" id="sell-menu" href="/produto/caracteristica/12">Vender</a>
                         <a class="nav-item nav-link" id="pay-menu" href="#">Carrinho</a>
                         <a class="nav-item nav-link" id="about-menu" href="#">Sobre</a>
                     </div>
@@ -65,6 +66,8 @@
                                 <a class="dropdown-item" href="#">Meus produtos</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Meus serviços</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Lista de desejos</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Sair </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -102,6 +105,6 @@
     </footer>
       
     <!-- Scripts do projeto -->
-    <script src="js/scripts.js"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 </html>
