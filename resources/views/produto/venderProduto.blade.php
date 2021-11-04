@@ -3,8 +3,10 @@
 @section('title', 'Document')
 
 @section('content')
+
+
 <div class="container-fluid vender">
-    <form action="{{ route('storeProduto') }}" method="POST" enctype="multipart/form-data">
+    <form action="/produto-cadastrar" method="POST" enctype="multipart/form-data">
         @csrf
         <div id="categoria-area">
             <div class="container">
@@ -228,4 +230,5 @@
         }
     });
 </script>
+
 @endsection

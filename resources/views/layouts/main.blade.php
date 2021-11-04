@@ -46,7 +46,7 @@
                         <a class="nav-item nav-link" id="services-menu" href="/produto/1">Serviços</a>
                         <a class="nav-item nav-link" id="sell-menu" href="/produto/caracteristica/1">Vender</a>
                         <a class="nav-item nav-link" id="pay-menu" href="#">Carrinho</a>
-                        <a class="nav-item nav-link" id="about-menu" href="#">Sobre</a>
+                        <a class="nav-item nav-link" id="about-menu" href="/vender-produto">Sobre</a>
                     </div>
                 </div>
                 <div class="justify-contend-end">
