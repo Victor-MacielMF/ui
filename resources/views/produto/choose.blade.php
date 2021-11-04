@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="col-md-6 vender-produto">
-                        <a href="/vender/produto" class="sem-decoration">
+                        <a href="/vender-produto" class="sem-decoration">
                             <div class="area-produto">
                                 <div class="categoria">
                                     <p>Produtos</p>
