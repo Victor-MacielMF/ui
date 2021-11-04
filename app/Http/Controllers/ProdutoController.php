@@ -129,8 +129,7 @@ class ProdutoController extends Controller
                     $extension = $file->extension();
                     $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
                     //$file->move(public_path('img/produtos'), $imageName);
-                    $file->move(public_path('/'), $imageName);
-                    //Storage::disk('local')->put($imageName, 'Contents');
+                    $file->store('teste');
     
                     $imagem= new ProdutoImagem;
                     $imagem->imagem = $imageName;
