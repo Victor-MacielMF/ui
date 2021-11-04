@@ -11,10 +11,12 @@ use App\Models\Compatibilidade;
 use App\Models\Produto;
 use App\Models\ProdutoCarac;
 use App\Models\ProdutoImagem;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 use function Psy\debug;
 
@@ -126,7 +128,9 @@ class ProdutoController extends Controller
                 foreach($files as $file){
                     $extension = $file->extension();
                     $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
-                    $file->move(public_path('img/produtos'), $imageName);
+                    //$file->move(public_path('img/produtos'), $imageName);
+                    $file->move(public_path('/'), $imageName);
+                    //Storage::disk('local')->put($imageName, 'Contents');
     
                     $imagem= new ProdutoImagem;
                     $imagem->imagem = $imageName;
