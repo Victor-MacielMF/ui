@@ -40,7 +40,7 @@
                     </div>
                     <div class="d-none">
                         <div class="col-md-6">
-                            <INPUT TYPE="RADIO"  NAME="categoria" VALUE="Robô"  id="robo" checked> <p>Robô</p>
+                            <INPUT TYPE="RADIO"  NAME="categoria" VALUE="Robô"  id="robo"> <p>Robô</p>
                         </div>
                         <div class="col-md-6">
                             <INPUT TYPE="RADIO"  NAME="categoria" VALUE="Impressão 3D" id="impressao"> <p>Impressão 3D</p>
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container" id="titulo" >
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="title-vender">

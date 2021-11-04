@@ -48,7 +48,12 @@ vender/meus-dados
                             pra fazer update é só dropar tudo quando clicar em salvar e contar quantos componentes tem o produto,
                             e fazer um loop com o indice
                             feito isso é só fazer oque eu já fiz.
+                            colocar mensagem de incompátivel na opções selecionadas
 
+                            Se tiver de visitante, aparecer uma mensagem de perguntas dos clientes;
+                            Se a pessoa clicar pra cadastrar sem componentes, required nos campos
+                            Se não possuir outros componentes, mostrar uma mensagem
+                            Preço unitário
                             colocar compatiblidade com produto para poder excluir
 
 

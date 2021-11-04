@@ -249,5 +249,7 @@ class ProdutoController extends Controller
             }
         }
 
+
+        return Redirect::back();
     }
 }
