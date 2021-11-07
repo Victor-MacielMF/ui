@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CaracOpcao;
 use App\Models\CaracOpcaoProdutoCarac;
 use App\Models\Caracteristica;
+use App\Models\Categoria;
 use App\Models\Comentario;
 use App\Models\ComentarioResposta;
 use App\Models\Compatibilidade;
@@ -259,6 +260,18 @@ class ProdutoController extends Controller
         }
 
 
+        return Redirect::back();
+    }
+
+
+    public function showCategoria(){
+        return view('categoria.categoria');
+    }
+    
+    public function storeCategoria(Request $request){
+        $categoria = new Categoria;
+        $categoria->nome = $request->categoria;
+        $categoria->save();
         return Redirect::back();
     }
 }

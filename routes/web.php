@@ -30,8 +30,8 @@ Route::get('/produto', [ProdutoController::class,'index']);
 Route::get('/produto-{id}', [ProdutoController::class, 'show'])->name('/produto/{id}');
 Route::get('/selecionou', [ProdutoController::class, 'selecionou']);
 Route::get('/selecionado', [ProdutoController::class, 'selecionado']);
-
-
+Route::get('/showCategoria', [ProdutoController::class, 'showCategoria']);
+Route::post('/storeCategoria', [ProdutoController::class, 'storeCategoria']);
 
 Route::get('/meus-dados', [Alter::class, 'index'])->middleware('auth');
 Route::delete('/endereco/{id}', [Alter::class, 'destroy'])->middleware('auth');
