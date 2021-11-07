@@ -108,7 +108,7 @@
                                 <input type="text" class="main-input" name="preco[]" id="preco" maxlength="10" onkeypress="$(this).mask('###.##0,00', {reverse: true});" autocomplete="off" required>
                             </div>
                             <div class="col-md-2 padding-direita">
-                                <input type="number" class="main-input" id="qtd-input" name="qtd[]" max="99" maxlength="2" autocomplete="off" required>
+                                <input type="number" class="main-input" id="qtd-input" name="qtd[]" onkeypress="$(this).mask('00');" max="99" maxlength="2" autocomplete="off" required>
                             </div>
                             <div class="col-md-1 sem-padding">
                                 <button type="button" class="second-btn modal-btn detalhes" data-toggle="modal" data-target="#detalhe-opcao-0">Detalhes</button>
@@ -171,9 +171,11 @@
             componenteAtual = componenteInicial-1;
             var idModal= 'id="detalhe-opcao-'+componenteAtual+'"';
             var mascara = "'###.##0,00'"
+            var mascara2 = "'00'"
+            var keyPress2 = 'onkeypress="$(this).mask('+mascara2+');"'
             var keyPress= 'onkeypress="$(this).mask('+mascara+', {reverse: true});"'
             var opcaoId = '<div class="row espacado" id="opcao-' + componenteInicial + '">';
-            var input = $(opcaoId+'<div class="col-md-7 padding-direita"><input type="text" class="main-input" name="opcao[]" maxlength="30"  autocomplete="off" required></div><div class="col-md-2 padding-direita"><input type="text" class="main-input" name="preco[]" maxlength="10" autocomplete="off" '+keyPress+'  required></div><div class="col-md-2 padding-direita"><input type="number" class="main-input" id="qtd-input" name="qtd[]" max="99" maxlength="2" autocomplete="off" required></div><div class="col-md-1 sem-padding"><button type="button" class="second-btn modal-btn detalhes" data-toggle="modal" data-target="#detalhe-opcao-'+componenteAtual+'">Detalhes</button></div></div>');
+            var input = $(opcaoId+'<div class="col-md-7 padding-direita"><input type="text" class="main-input" name="opcao[]" maxlength="30"  autocomplete="off" required></div><div class="col-md-2 padding-direita"><input type="text" class="main-input" name="preco[]" maxlength="10" autocomplete="off" '+keyPress+'  required></div><div class="col-md-2 padding-direita"><input type="number" class="main-input" id="qtd-input" name="qtd[]" max="99" '+keyPress2+' maxlength="2" autocomplete="off" required></div><div class="col-md-1 sem-padding"><button type="button" class="second-btn modal-btn detalhes" data-toggle="modal" data-target="#detalhe-opcao-'+componenteAtual+'">Detalhes</button></div></div>');
             $("#opcoes").append(input);
             var modal = $('<div class="modal fade" '+idModal+' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Selecione as opções que são incompatíveis</h5></div>            <div class="modal-body">@foreach ($produto->caracteristicas as $caracteristica)<div class="multiselect"><div class="selectBox"><select><option>{{$caracteristica->caracteristica->nome}}</option></select><div class="overSelect"></div></div><div id="checkboxes">@foreach ($caracteristica->opcoes_real as $opcao)<label><input type="checkbox" id="one" name="compatibilidade[]" value="'+componenteAtual+'.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}</label>@endforeach</div></div>@endforeach</div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button></div></div></div></div>');
             $("#modais").append(modal);

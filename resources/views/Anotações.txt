@@ -4,7 +4,9 @@ A recuperação de senha não é prioritário.
 justificativa do por que ainda n tem login por redes sociais - precisa de termos de uso do site
 login por redes sociais.
 colocar os centavos em <sup>
-
+Poder selecionar a foto principal
+Adicionar a categoria no cadastro
+mensagem se n tiver nada cadastrado nos detlahes
 Se o vendedor não tiver mais produtos, colocar : Produtos recomendados
 
 /******** Necessário ********/
@@ -79,3 +81,12 @@ vender/meus-dados
     <!-- Parallax -->
     <script src="{{ asset('https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js') }}"></script>
 </head>
+
+
+
+Criar a categoria robô no id = 1
+Impressao 3d = 2
+quais padrões de projeto eu utilizei
+design patterns
+
+Verificar se o projeto segue os princípios SOLID

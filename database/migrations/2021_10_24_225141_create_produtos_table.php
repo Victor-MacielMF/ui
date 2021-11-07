@@ -20,6 +20,8 @@ class CreateProdutosTable extends Migration
             $table->string('descricao',500)->nullable();
             $table->string('descricao_simplificada',50)->nullable();
             $table->float('preco',8,2)->nullable();
+            $table->float('precoMinimo',8,2)->nullable();
+            $table->float('precoMaximo',12,2)->nullable();
             $table->smallInteger('quantidade')->nullable();
             $table->smallInteger('pendente')->nullable();
             $table->timestamps();

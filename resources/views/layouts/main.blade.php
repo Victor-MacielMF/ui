@@ -42,8 +42,8 @@
                 </a>
                 <div class="collapse navbar-collapse justify-content-center" id="navbar-links">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" id="products-menu" href="/escolha">Produtos</span></a>
-                        <a class="nav-item nav-link" id="services-menu" href="/produto/1">Serviços</a>
+                        <a class="nav-item nav-link" id="products-menu" href="">Produtos</span></a>
+                        <a class="nav-item nav-link" id="services-menu" href="/escolha">Serviços</a>
                         <a class="nav-item nav-link" id="sell-menu" href="/produto/caracteristica/1">Vender</a>
                         <a class="nav-item nav-link" id="pay-menu" href="#">Carrinho</a>
                         <a class="nav-item nav-link" id="about-menu" href="/vender-produto">Sobre</a>

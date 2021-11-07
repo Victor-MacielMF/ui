@@ -117,6 +117,7 @@ class ProdutoController extends Controller
             $produto->nome =$request->titulo;
             $produto->pendente=1;
             $produto->save();
+            $produto->categorias()->attach($request->categoria);
     
             $idProduto=$produto->id;
     
@@ -128,8 +129,8 @@ class ProdutoController extends Controller
                 foreach($files as $file){
                     $extension = $file->extension();
                     $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
-                    //$file->move(public_path('img/produtos'), $imageName);
-                    $file->store('teste');
+
+                    $file->move(public_path('img/produtos'), $imageName);
     
                     $imagem= new ProdutoImagem;
                     $imagem->imagem = $imageName;
@@ -151,11 +152,17 @@ class ProdutoController extends Controller
             $produto->nome =$request->titulo;
             $produto->descricao = $request->descricao;
             $produto->descricao_simplificada = $request->descricao_simplificada;
-            $produto->preco=$request->preco;
+            
             $produto->quantidade=$request->quantidade;
             $produto->pendente=0;
+
+            $formatando=preg_replace("/[^0-9,]/", "", $request->preco);
+            $formatado=str_replace(',', '.', $formatando);
+
+            $produto->preco=$formatado;
     
             $produto->save();
+            $produto->categorias()->attach($request->categoria);
     
             $idProduto=$produto->id;
     
@@ -184,7 +191,6 @@ class ProdutoController extends Controller
     }
 
     public function storeCaracteristica(Request $request){
-        $first = array('doh', 'ray', 'me');
         //é isso, a cada rodada eu vou perguntar isso por meio de um indice com o nome do array
         //dd($request->has('compatibilidade'));
         

@@ -212,7 +212,7 @@
                         <a href="" class="none">
                             <div class="card">
                                 <h5 class="card-title">Jhon Doe</h5>
-                                <div class="foto-produto" style="background-image: url(/img/produto/7.jpg);"></div>
+                                <div class="foto-produto" style="background-image: url(https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg);"></div>
                             <div class="card-body">
                                 <p class="card-text">R$ 500<sup>50</sup> </p>
                             </div>
