@@ -169,12 +169,13 @@ class ProdutoController extends Controller
             if($files){
                 foreach($files as $file){
                     $path = $file->store('produtos','s3');
-    
-                    $imagem= new ProdutoImagem;
-                    $imagem->imagem = Storage::disk()->url($path);
-                    $imagem->produto_id = $idProduto;
-                    
-                    $imagem->save();
+                    Storage::disk('s3')->setVisibility($path,'public');
+
+                    $imagem= ProdutoImagem::create([
+                        'filename'=>basename($path),
+                        'imagem'=>Storage::disk('s3')->url($path),
+                        'produto_id'=>$idProduto
+                    ]);
                 }
             }
     

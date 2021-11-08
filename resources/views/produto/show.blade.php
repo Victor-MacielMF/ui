@@ -28,8 +28,7 @@
                                     <div class="carousel-item active" style="background-image: url({{$imagem->imagem}});">
                                     </div>
                                 @else
-                                    <div class="carousel-item" style="background-image: url({{$imagem->imagem}}});">
-                                        <h1>{{$imagem->filename}}</h1>
+                                    <div class="carousel-item" style="background-image: url({{$imagem->imagem}});">
                                     </div>
                                 @endif
                                 {{$indice+=1}}
