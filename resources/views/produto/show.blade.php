@@ -25,10 +25,11 @@
                             {{$indice=0}}
                             @foreach ($produto->imagens as $imagem)
                                 @if ($indice==0)
-                                    <div class="carousel-item active" style="background-image: url(/img/produtos/{{$imagem->imagem}});">
+                                    <div class="carousel-item active" style="background-image: url({{$imagem->imagem}});">
                                     </div>
                                 @else
-                                    <div class="carousel-item" style="background-image: url(/img/produtos/{{$imagem->imagem}});">
+                                    <div class="carousel-item" style="background-image: url({{$imagem->imagem}}});">
+                                        <h1>{{$imagem->filename}}</h1>
                                     </div>
                                 @endif
                                 {{$indice+=1}}

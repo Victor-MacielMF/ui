@@ -16,6 +16,7 @@ class CreateProdutoImagemsTable extends Migration
         Schema::create('produto_imagems', function (Blueprint $table) {
             $table->id();
             $table->string('imagem');
+            $table->string('filename');
             $table->foreignId('produto_id')->constrained();
             $table->timestamps();
         });

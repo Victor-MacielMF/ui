@@ -31,10 +31,6 @@ class ProdutoController extends Controller
         $caracteristicas = $produto->caracteristicas;
         return view('produto.show',['produto'=>$produto,'caracteristicas'=>$caracteristicas]);
 
-                        //$login['success']= false;
-                //$login['message'] = 'CEP inválido.';
-                //echo json_encode($login);
-                //return;
     }
 
     public function selecionou (Request $request){
@@ -128,16 +124,15 @@ class ProdutoController extends Controller
             $files=$request->file('imagens');
             if($files){
                 foreach($files as $file){
-                    $extension = $file->extension();
-                    $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
+                    $path = $file->store('produtos','s3');
+                    Storage::disk('s3')->setVisibility($path,'public');
 
-                    $file->move(public_path('img/produtos'), $imageName);
-    
-                    $imagem= new ProdutoImagem;
-                    $imagem->imagem = $imageName;
-                    $imagem->produto_id = $idProduto;
-                    
-                    $imagem->save();
+                    $imagem= ProdutoImagem::create([
+                        'filename'=>basename($path),
+                        'imagem'=>Storage::disk('s3')->url($path),
+                        'produto_id'=>$idProduto
+                    ]);
+                    //return Storage::disk('s3')->response('produtos/'.$imagem->filename);
                 }
             }
     
@@ -173,12 +168,10 @@ class ProdutoController extends Controller
             $files=$request->file('imagens');
             if($files){
                 foreach($files as $file){
-                    $extension = $file->extension();
-                    $imageName = md5($file->getClientOriginalName() . strtotime("now")) . "." . $extension;
-                    $file->move(public_path('img/produtos'), $imageName);
+                    $path = $file->store('produtos','s3');
     
                     $imagem= new ProdutoImagem;
-                    $imagem->imagem = $imageName;
+                    $imagem->imagem = Storage::disk()->url($path);
                     $imagem->produto_id = $idProduto;
                     
                     $imagem->save();
