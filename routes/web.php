@@ -47,7 +47,11 @@ Route::delete('/resposta/excluir/{id}', [ProdutoController::class, 'excluirRespo
 Route::get('/escolha', [ProdutoController::class, 'choose'])->middleware('auth');
 Route::get('/vender-produto',[ProdutoController::class, 'venderProduto'])->middleware('auth');
 Route::get('/caracteristica-{id}',[ProdutoController::class, 'caracteristicaProduto'])->middleware('auth');
-
+Route::delete('/excluir-caracteristica-{id}', [ProdutoController::class, 'excluirCaracteristica'])->middleware('auth');
+Route::post('/finalizar-produto',[ProdutoController::class, 'finalizarProduto1'])->middleware('auth');
+Route::post('/finish-product',[ProdutoController::class, 'finalizarProduto2'])->middleware('auth');
+Route::post('/finalizar-{id}',[ProdutoController::class, 'cancelarCaracteristica'])->middleware('auth');
 Route::post('/produto-cadastrar',[ProdutoController::class,'storeProduto'])->middleware('auth');
-Route::post('/produto/cadastrar/caracteristica',[ProdutoController::class,'storeCaracteristica'])->middleware('auth')->name('storeCaracteristica');
+Route::post('/cadastrar-caracteristica',[ProdutoController::class,'storeCaracteristica'])->middleware('auth')->name('storeCaracteristica');
+Route::get('/caracteristicas-{id}',[ProdutoController::class,'showCaracteristicas'])->middleware('auth')->name('/caracteristicas');
 

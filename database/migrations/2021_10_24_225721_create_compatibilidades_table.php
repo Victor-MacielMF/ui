@@ -17,9 +17,9 @@ class CreateCompatibilidadesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('carac_opcao_produto_carac_id');
             $table->unsignedBigInteger('carac_opcao_produto_carac_c_id');
-            $table->foreign('carac_opcao_produto_carac_id')->references('id')->on('carac_opcao_produto_carac');
-            $table->foreign('carac_opcao_produto_carac_c_id')->references('id')->on('carac_opcao_produto_carac');
-            $table->foreignId('produto_id')->constrained();
+            $table->foreign('carac_opcao_produto_carac_id')->references('id')->on('carac_opcao_produto_carac')->onDelete('cascade');
+            $table->foreign('carac_opcao_produto_carac_c_id')->references('id')->on('carac_opcao_produto_carac')->onDelete('cascade');
+            $table->foreignId('produto_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

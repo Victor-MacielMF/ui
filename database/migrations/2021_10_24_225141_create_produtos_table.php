@@ -22,6 +22,7 @@ class CreateProdutosTable extends Migration
             $table->float('preco',8,2)->nullable();
             $table->float('precoMinimo',8,2)->nullable();
             $table->float('precoMaximo',12,2)->nullable();
+            $table->float('precoMedio',12,2)->nullable();
             $table->smallInteger('quantidade')->nullable();
             $table->smallInteger('pendente')->nullable();
             $table->timestamps();

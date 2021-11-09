@@ -423,6 +423,10 @@
                 var classe=$(this).attr('class');
                 if(id === classe){
                     $(this).prop('disabled', false);
+                    textoInput=$(this).text();
+                    $(this).empty();
+                    texto5=textoInput.replace(" (Incompatível)", "")
+                    $(this).append(texto5);
                 }
             });
             
@@ -442,12 +446,16 @@
                     if(response!=0){
                         for (var i = 0; i < response.length; i++) { 
                             var teste = response[i];
+                            var id=$('#'+teste['carac_opcao_produto_carac_c_id']).attr('id');
+                            var classe2=$('#'+teste['carac_opcao_produto_carac_c_id']).attr('class');
                             var classe = teste['carac_opcao_produto_carac_id'];
+                            if(id===classe2){
+                                $('#'+teste['carac_opcao_produto_carac_c_id']).append(' (Incompatível)');
+                            }
                             $('#'+teste['carac_opcao_produto_carac_c_id']).prop('disabled', 'disabled');
                             $('#'+teste['carac_opcao_produto_carac_c_id']).addClass("" + classe);
                             //$('#'+teste['carac_opcao_produto_carac_c_id']).removeClass("" + classe);
                             //alert(teste['carac_opcao_produto_carac_c_id']);
-                            console.log(classe);
                         }
                     }
                 }

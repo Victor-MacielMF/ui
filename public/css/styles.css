@@ -584,7 +584,7 @@ input[type="radio"]{
     text-align: right;
 }
 .espaco-cima{
-    margin-top: 1em;
+    margin-top: 1em !important;
 }
 
 #btn-salvar{
@@ -955,6 +955,10 @@ select:disabled{
      padding:0 .5em 0 0 !important;
  }
 
+ .padding-direita-dobro{
+    padding:0 4em 0 0 !important;
+ }
+
  input[type="number"] {
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
@@ -1021,6 +1025,13 @@ select:disabled{
     padding-bottom: 4.5em;
     font-weight: 300;
     
+}
+.disponiveis2{
+    margin-top: .5em;
+    padding-left: 0;
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
 }
 #quantidade-calculada{
     display: inline;
@@ -1523,6 +1534,11 @@ select:disabled{
     padding-right: 0 !important;
     padding-bottom: 0 !important;
 }
+.containers-botoes2{
+    padding-top: 1em !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+}
 
 .containers-botoes button{
     margin-right: 0em;
@@ -1566,13 +1582,21 @@ select:disabled{
 #qtd-input{
     background-color: #202226 !important;
 }
+#preco-minimo-input{
+    text-align: center;
+}
 
 .mais-opcao{
     width: 2em;
     height: 2em;
     margin-top: 0.5em;
 }
-
+.mais-opcao2{
+    width: 2em;
+    height: 1.9em;
+    border-bottom-left-radius: 0em;
+    border-top-left-radius: 0em;
+}
 .opcoes-footer{
     padding-top: 0;
 }
@@ -1621,3 +1645,25 @@ select:disabled{
   #checkboxes label:hover {
     background-color: #1e90ff;
   }
+
+  .texto-centralizado-meio{
+      text-align: center;
+  }
+
+  .link-botao{
+    text-decoration: none !important;
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; right: 0;
+    padding: .5em 1em .5em 1em !important;
+    color: black !important;
+    background: #E5CD14;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: .2em;
+  }
+
+  .link-botao:hover{
+    color: black !important;
+}

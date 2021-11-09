@@ -15,7 +15,7 @@ class CreateCaracOpcaosTable extends Migration
     {
         Schema::create('carac_opcaos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('caracteristica_id')->constrained();
+            $table->foreignId('caracteristica_id')->constrained()->onDelete('cascade');
             $table->string('nome',30);
             $table->string('imagem')->nullable();
             $table->timestamps();

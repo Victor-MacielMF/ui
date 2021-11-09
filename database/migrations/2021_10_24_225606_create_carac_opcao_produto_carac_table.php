@@ -15,8 +15,8 @@ class CreateCaracOpcaoProdutoCaracTable extends Migration
     {
         Schema::create('carac_opcao_produto_carac', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produto_carac_id', 'name')->constrained();
-            $table->foreignId('carac_opcao_id', 'nome')->constrained();
+            $table->foreignId('produto_carac_id', 'name')->constrained()->onDelete('cascade');
+            $table->foreignId('carac_opcao_id', 'nome')->constrained()->onDelete('cascade');
             $table->float('preco', 8,2);
             $table->smallInteger('quantidade');
             $table->timestamps();

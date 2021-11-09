@@ -15,8 +15,8 @@ class CreateProdutoCaracsTable extends Migration
     {
         Schema::create('produto_caracs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produto_id')->constrained();
-            $table->foreignId('caracteristica_id')->constrained();
+            $table->foreignId('produto_id')->constrained()->onDelete('cascade');
+            $table->foreignId('caracteristica_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

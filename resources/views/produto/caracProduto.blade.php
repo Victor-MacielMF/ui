@@ -6,10 +6,34 @@
 
 
 
+
 <div class="container-fluid vender">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title-vender">
+                    Complete o cadastro do <br>
+                    seu anúncio: {{$produto->nome}}
+                </h1>
+            </div>
+            <div class="col-md-6">
+                <form action="/finalizar-{{$produto->id}}" method="POST">
+                    @csrf
+                    <a href="/finalizar-{{$produto->id}}" 
+                      class="link-botao" 
+                      id="event-submit"
+                      onclick="event.preventDefault();
+                      this.closest('form').submit();">Cancelar
+                    </a>
+                  </form>
+            </div>
+        </div>
+    </div>
+
     <form action="{{ route('storeCaracteristica') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
+        @if((count($produto->caracteristicas))>0)
         <div id="modais">
             <div class="modal fade" id="detalhe-opcao-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -43,17 +67,25 @@
                 </div>
             </div>
         </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="title-vender">
-                        Complete o cadastro do <br>
-                        seu anúncio: {{$produto->nome}}
-                    </h1>
+        @else
+            <div id="modais">
+                <div class="modal fade" id="detalhe-opcao-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Você ainda não possui outras opções cadastradas neste produto</h5>
+                        </div>            
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="main-btn modal-btn" data-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+        
         <div id="componente-area">
             <div class="container">
                 <div class="row titulo-area">
@@ -70,14 +102,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="modal-footer containers-botoes">
-                            <button type="submit" class="main-btn modal-btn" value="componente">Avançar</button>
+                            <button type="submit" class="main-btn modal-btn" value="avancar-1">Avançar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="opcoes-area">
+        <div id="opcoes-area" style="display: none;">
             <div class="container">
                 <div class="row titulo-area">
                     <div class="col-md-12">
@@ -121,8 +153,8 @@
                     </div>
                     <div class="col-md-12">
                         <div class="modal-footer containers-botoes opcoes-footer">
-                            <button type="button" class="second-btn modal-btn cancelar-modal">Voltar</button>
-                            <button type="submit" class="main-btn modal-btn" value="concluir">Avançar</button>
+                            <button type="button" class="second-btn modal-btn cancelar-modal" value="voltar-2">Voltar</button>
+                            <button type="submit" class="main-btn modal-btn" value="concluir">Concluir</button>
                         </div>
                     </div>
                 </div>
@@ -149,16 +181,18 @@
     var componenteInicial = 1;
     $(".modal-btn").click(function(){
         nome=$(this).val();
-        var caracteristica = $("input[name='nome_caracteristica']").val();
-        if( (nome=="componente") && (caracteristica.length==0)){
-            alert("Insira o nome do componente");
-            $( "#nome" ).focus();
+        if(nome=="avancar-1"){
             event.preventDefault();
-        }else{
-            //aqui vai ficar a parte de redirecionar para as caracteristicas
-            if( nome!="concluir"){
-                event.preventDefault();
+            texto1=$("#nome").val();
+            if(!(texto1==null || texto1=="")){
+                $('#componente-area').hide();
+                $('#opcoes-area').show();
             }
+        }
+        if(nome=="voltar-2"){
+            event.preventDefault();
+            $('#componente-area').show();
+            $('#opcoes-area').hide();
         }
 
     });

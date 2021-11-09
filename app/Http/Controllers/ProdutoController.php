@@ -98,10 +98,34 @@ class ProdutoController extends Controller
     public function caracteristicaProduto($id){
         $user = auth()->user();
         $produto=Produto::findOrFail($id);
-        if(($produto->user_id!=$user->id)&&($produto->pendente!=1)){
+        if(($produto->user_id!=$user->id)||($produto->pendente!=1)){
             return redirect('/home');
         }else{
             return view('produto.caracProduto',['produto'=>$produto]);
+        }
+    }
+    public function excluirCaracteristica($id){
+        $user = auth()->user();
+        $caracteristica=  ProdutoCarac::findOrFail($id);
+        $idProduto=$caracteristica->produto->id;
+        if($user->id==$caracteristica->produto->user_id){
+            $maior=null;
+            $menor=null;
+            foreach ($caracteristica->opcoes_real as $opcao) {
+                if(($maior==null)||($maior<$opcao->pivot->preco)){
+                    $maior=$opcao->pivot->preco;
+                }
+                if(($menor==null)||($menor>$opcao->pivot->preco)){
+                    $menor=$opcao->pivot->preco;
+                }
+            }
+            $produto= Produto::findOrFail($caracteristica->produto_id);
+            $produto->precoMaximo-=$maior;
+            $produto->precoMinimo-=$menor;
+            $produto->precoMedio=($produto->precoMaximo+$produto->precoMinimo)/2;
+            $produto->save();
+            $caracteristica->delete();
+            return Redirect::route('/caracteristicas', [$idProduto]);
         }
     }
 
@@ -185,6 +209,17 @@ class ProdutoController extends Controller
 
     }
 
+    public function showCaracteristicas($id){
+        $user = auth()->user();
+        $produto = Produto::findOrFail($id);
+        if(($produto->user_id==$user->id)&&($produto->pendente==1)){
+            return view('produto.caracTotal',['produto'=>$produto]);
+        }else{
+            return redirect('/home');
+        }
+       //return view('produto.show',['produto'=>$produto,'caracteristicas'=>$caracteristicas]);
+    }
+
     public function storeCaracteristica(Request $request){
         //é isso, a cada rodada eu vou perguntar isso por meio de um indice com o nome do array
         //dd($request->has('compatibilidade'));
@@ -214,6 +249,8 @@ class ProdutoController extends Controller
                     array_push($compSecundaria,$dividido[1]);
                 }
             }
+            $maior=null;
+            $menor=null;
             for ($i=0; $i < $count; $i++) { 
                 $caracOpcao= new CaracOpcao;
                 $caracOpcao->caracteristica_id=$caracteristica->id;
@@ -222,6 +259,13 @@ class ProdutoController extends Controller
                 //teste para ver se desse modo eu consigo cadastrar a opção pelo attach. Antes disso eu n fiz nada para que isso aconteça
                 $formatando=preg_replace("/[^0-9,]/", "", $request->preco[$i]);
                 $formatado=str_replace(',', '.', $formatando);
+                if(($maior==null)||($maior<$formatado)){
+                    $maior=$formatado;
+                }
+                if(($menor==null)||($menor>$formatado)){
+                    $menor=$formatado;
+                }
+                
 
                 $caracProduto->opcoes_real()->attach($caracOpcao->id,[
                     'preco' => $formatado,
@@ -251,10 +295,13 @@ class ProdutoController extends Controller
                 
 
             }
+            $produto->precoMinimo+=$menor;
+            $produto->precoMaximo+=$maior;
+            $media=($produto->precoMaximo+$produto->precoMinimo)/2;
+            $produto->precoMedio=$media;
+            $produto->save();
+            return view('produto.caracTotal',['produto'=>$produto]);
         }
-
-
-        return Redirect::back();
     }
 
 
@@ -267,5 +314,56 @@ class ProdutoController extends Controller
         $categoria->nome = $request->categoria;
         $categoria->save();
         return Redirect::back();
+    }
+
+    public function cancelarCaracteristica($id){
+        $produto= Produto::findOrFail($id);
+        $user = auth()->user();
+        if(($produto->user_id==$user->id)&&($produto->pendente==1)){
+            $caracteristicas=$produto->caracteristicas;
+            if($caracteristicas->isEmpty()){
+                return view('produto.continuarProduto',['produto'=>$produto]);
+            }else{
+                return Redirect::route('/caracteristicas', [$id]);
+            }
+        }
+        //return Redirect::route('/caracteristicas', [$id]);
+    }
+    public function finalizarProduto1(Request $request){
+        $produto= Produto::findOrFail($request->id_produto);
+        $user = auth()->user();
+        if(($produto->user_id==$user->id)&&($produto->pendente==1)){
+            if(($request->has('preco'))&&($request->has('quantidade'))){
+                $formatando=preg_replace("/[^0-9,]/", "", $request->preco);
+                $formatado=str_replace(',', '.', $formatando);
+                $produto->preco=$formatado;
+                $produto->descricao_simplificada=$request->descricao_simplificada;
+                $produto->descricao=$request->descricao;
+                $produto->quantidade=$request->quantidade;
+                $produto->pendente=0;
+                $produto->save();
+                return redirect('/home');
+            }else{
+                $produto->descricao_simplificada=$request->descricao_simplificada;
+                $produto->descricao=$request->descricao;
+                $produto->pendente=0;
+                $produto->save();
+                return redirect('/home');
+            }
+        }
+    }
+
+    public function finalizarProduto2(Request $request){
+
+        $produto= Produto::findOrFail($request->id_produto);
+        $user = auth()->user();
+        if(($produto->user_id==$user->id)&&($produto->pendente==1)){
+            $caracteristicas=$produto->caracteristicas;
+            if($caracteristicas->isEmpty()){
+                return view('produto.continuarProduto',['produto'=>$produto]);
+            }else{
+                return view('produto.continuarProduto2',['produto'=>$produto]);
+            }
+        }
     }
 }
