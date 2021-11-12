@@ -26,7 +26,8 @@ Auth::routes();
 
 Route::post('/registrar',[RegisterController::class, 'Redirect']);
 Route::post('/cadastrando',[RegisterController::class,'create']);
-Route::get('/produto', [ProdutoController::class,'index']);
+Route::get('/produtos', [ProdutoController::class,'showCategorias']);
+Route::get('/produtos-{id}', [ProdutoController::class,'index']);
 Route::get('/produto-{id}', [ProdutoController::class, 'show'])->name('/produto/{id}');
 Route::get('/selecionou', [ProdutoController::class, 'selecionou']);
 Route::get('/selecionado', [ProdutoController::class, 'selecionado']);

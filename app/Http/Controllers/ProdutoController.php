@@ -13,6 +13,7 @@ use App\Models\Produto;
 use App\Models\ProdutoCarac;
 use App\Models\ProdutoImagem;
 use Facade\FlareClient\Stacktrace\File;
+use FunctionName;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,14 @@ use function Psy\debug;
 
 class ProdutoController extends Controller
 {
-    public function index (){
+
+    public Function index ($id){
+        $categorias=Categoria::findOrFail($id);
+        return view('produto.showAll',['categorias'=>$categorias]);
+    }
+
+    public function showCategorias (){
+        return view ('produto.escolherCategoriaVisualizacao');
     }
 
     public function show ($id){

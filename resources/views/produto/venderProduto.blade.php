@@ -23,7 +23,7 @@
                                 <div class="categoria">
                                     <p>Robótica</p>
                                 </div>
-                                <div class="imagem-vender"></div>
+                                <div class="imagem-categoria"></div>
                             </div>
                         </button>
                     </div>
@@ -35,7 +35,7 @@
                                     <div class="categoria">
                                         <p>Impressão 3D</p>
                                     </div>
-                                    <div class="imagem-vender2">
+                                    <div class="imagem-categoria2">
                                     </div>
                             </div>
                         </button>

@@ -32,6 +32,7 @@ p, li{
 }
 
 
+
 .container-fluid{
     padding:0;
     margin-top: 7em;
@@ -758,6 +759,15 @@ input[type="radio"]{
     font-size: 20px;
 }
 
+.centavos-produto{
+    display: inline;
+    
+    color:#E5CD14;
+    
+    font-weight: 700;
+    font-size: 14px;
+}
+
 #div-label-cidade{
     width: 79%;
     display: inline-block;
@@ -949,6 +959,9 @@ select:disabled{
 
  .sem-padding{
      padding: 0 !important;
+ }
+ .sem-margin{
+     margin:0 !important;
  }
 
  .padding-direita{
@@ -1249,18 +1262,31 @@ select:disabled{
     background-color: #202226;
 }
 .foto-produto{
-    
     height:8em;
     border-radius: .2em;
     margin: 0.5em 1em 0em 1em;
     background-position: center center;
     background-size: cover;
 }
-
+.product-image{
+    height:11em;
+    border-radius: .2em;
+    margin: 0.5em 1em 0em 1em;
+    background-position: center center;
+    background-size: cover;
+}
 .card-title{
     margin-top: .5em;
     color: white;
     font-size: 18px;
+}
+
+.product-title{
+        margin-top: .5em;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+    
 }
 
 .none{
@@ -1425,16 +1451,32 @@ select:disabled{
 
 .imagem-vender{
     margin: 2em;
-    height: 15em;
-    background-image: url(/img/produto/walle.png);
+    height: 14em;
+    background-image: url(/img/produto/produto.png);
     background-position: center center;
     background-size: cover;
 }
 
 .imagem-vender2{
     margin: 2em;
-    height: 15em;
-    background-image: url(/img/produto/worker.png);
+    height: 14em;
+    background-image: url(/img/produto/service.png);
+    background-position: center center;
+    background-size: cover;
+}
+
+.imagem-categoria{
+    margin: 2em;
+    height: 14em;
+    background-image: url(/img/produto/robo.png);
+    background-position: center center;
+    background-size: cover;
+}
+
+.imagem-categoria2{
+    margin: 2em;
+    height: 14em;
+    background-image: url(/img/produto/impressão3D.png);
     background-position: center center;
     background-size: cover;
 }
@@ -1666,4 +1708,25 @@ select:disabled{
 
   .link-botao:hover{
     color: black !important;
+}
+
+.paragrafo-produto{
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0.5em 0.5em 0em 0.5em;
+}
+
+.card-text{
+    margin-bottom: 0em;
+}
+
+.produtos-all{
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    height: 23em;
+}
+
+.todos-inline *{
+    display: inline-block;
 }

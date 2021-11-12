@@ -12,6 +12,6 @@ class Categoria extends Model
     protected $guarded = [];
     
     public function produtos(){
-        $this->belongsToMany('App\Models\Produto');
+       return $this->belongsToMany('App\Models\Produto');
     }
 }
