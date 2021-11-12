@@ -9,10 +9,10 @@
     
     <div id="navigation-area">
         <div class="container sub-navigation">
-            <a href="">Home</a> > 
-            <a href="">Produtos</a> > 
-            <a href="">Robôs</a> >
-            <a href="">Robô Otto</a>
+            <a href="/">Home</a> > 
+            <a href="/produtos">Produtos</a> > 
+            <a href="produtos-{{$produto->categorias[0]->id}}">{{$produto->categorias[0]->nome}}</a> >
+            <a href="">{{$produto->nome}}</a>
         </div>
     </div>
     {{-- Produto --}}
@@ -271,6 +271,14 @@
                     @endif
                 @endauth
 
+                @guest
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="perguntas-clientes">Pergunte ao vendedor</h4>
+                            </div>
+                        </div>
+                @endguest
+
 
                 @if(count($produto->comentarios) < 1)
                     <div class="row">
@@ -283,7 +291,7 @@
                                 @endif
                             @endauth
                             @guest
-                                <h4>Este produto ainda não possui perguntas</h4>
+                                <h4>Cadastre-se e seja o primeiro a comentar</h4>
                             @endguest
                         </div>
                     </div>

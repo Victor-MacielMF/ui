@@ -193,10 +193,6 @@ class ProdutoController extends Controller
             $produto->categorias()->attach($request->categoria);
     
             $idProduto=$produto->id;
-    
-            
-            $input=$request->all();
-            $images=array();
             $files=$request->file('imagens');
             if($files){
                 foreach($files as $file){
@@ -210,8 +206,7 @@ class ProdutoController extends Controller
                     ]);
                 }
             }
-    
-            return redirect('/');
+            return redirect('/produto-'.$idProduto);
 
         }
 
@@ -350,13 +345,15 @@ class ProdutoController extends Controller
                 $produto->quantidade=$request->quantidade;
                 $produto->pendente=0;
                 $produto->save();
-                return redirect('/home');
+                //return redirect('/home');
+                return redirect('/produto-'.$produto->id);
             }else{
                 $produto->descricao_simplificada=$request->descricao_simplificada;
                 $produto->descricao=$request->descricao;
                 $produto->pendente=0;
                 $produto->save();
-                return redirect('/home');
+                //return redirect('/home');
+                return redirect('/produto-'.$produto->id);
             }
         }
     }

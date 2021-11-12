@@ -15,13 +15,14 @@
                         {{$categorias->nome}}
                     </h1>
                 </div>
+                <p class="d-none">{{$quantidadeProduto=0}}</p>
                 @foreach ($categorias->produtos as $produto)
                     @if ($produto->pendente=="0")
                         <div class="col-md-2 sem-padding">
                             <a href="/produto-{{$produto->id}}" class="none">
                                 <div class="card produtos-all">
                                     <h5 class="product-title">{{$produto->nome}}</h5>
-                                    
+
                                     <p class="d-none">{{$indice=0}}</p>
                                     @foreach ($produto->imagens as $imagem)
                                         @if($indice==0)
@@ -70,8 +71,14 @@
                                 </div>
                             </a>
                         </div>
+                        <p class="d-none">{{$quantidadeProduto+=1}}</p>
                     @endif
                 @endforeach
+                @if ($quantidadeProduto==0)
+                    <div class="col-md-12 sem-produtos">
+                        Essa categoria ainda não possui produtos
+                    </div>
+                @endif
 
             </div>
         </div>
