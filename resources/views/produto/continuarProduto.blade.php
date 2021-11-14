@@ -34,7 +34,7 @@
                         <p class="paragrafos-containers">Unidades:</p>
                     </div>
                     <div class="col-md-12">
-                        <input name="quantidade" type="number" class="main-input" id="qtd-venda" min="1" onkeypress="$(this).mask('00');" max="99" required>
+                        <input name="quantidade" type="number" class="main-input" id="qtd-venda" min="1" onkeypress="$(this).mask('000');" max="999" maxlength="3" required>
                     </div>
                     <div class="col-md-12">
                         <div class="modal-footer containers-botoes">

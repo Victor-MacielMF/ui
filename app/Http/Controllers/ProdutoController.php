@@ -226,7 +226,6 @@ class ProdutoController extends Controller
     public function storeCaracteristica(Request $request){
         //é isso, a cada rodada eu vou perguntar isso por meio de um indice com o nome do array
         //dd($request->has('compatibilidade'));
-        
         $user = auth()->user();
         $produto=Produto::findOrFail($request->produto_id);
         if($produto->user_id==$user->id){
@@ -274,11 +273,9 @@ class ProdutoController extends Controller
                     'preco' => $formatado,
                     'quantidade' => $request->qtd[$i]
                 ]);
-
-
                 for ($a=0; $a < $count2; $a++) {
                     if($compPrimaria[$a]==$i){
-                        foreach($caracProduto->opcoes_real as $opcao){
+                        foreach($caracOpcao->caracteristica_produto as $opcao){
                             $compatibilidade= new Compatibilidade;
                             $compatibilidadeReversa= new Compatibilidade;
 

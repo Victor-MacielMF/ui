@@ -32,42 +32,7 @@
 
     <form action="{{ route('storeCaracteristica') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
-        @if((count($produto->caracteristicas))>0)
-        <div id="modais">
-            <div class="modal fade" id="detalhe-opcao-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Selecione as opções que são incompatíveis</h5>
-                    </div>            
-                        <div class="modal-body">
-                            @foreach ($produto->caracteristicas as $caracteristica)
-                                <div class="multiselect">
-                                    <div class="selectBox">
-                                    <select>
-                                        <option>{{$caracteristica->caracteristica->nome}}</option>
-                                    </select>
-                                    <div class="overSelect"></div>
-                                    </div>
-                                    <div id="checkboxes">
-                                        @foreach ($caracteristica->opcoes_real as $opcao)
-                                            <label>
-                                                <input type="checkbox" id="one" name="compatibilidade[]" value="0.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @else
+        @if((count($produto->caracteristicas))==0)
             <div id="modais">
                 <div class="modal fade" id="detalhe-opcao-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -79,6 +44,40 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="main-btn modal-btn" data-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div id="modais">
+                <div class="modal fade" id="detalhe-opcao-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Selecione as opções que são incompatíveis</h5>
+                        </div>            
+                            <div class="modal-body">
+                                @foreach ($produto->caracteristicas as $caracteristica)
+                                    <div class="multiselect">
+                                        <div class="selectBox">
+                                        <select>
+                                            <option>{{$caracteristica->caracteristica->nome}}</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                        </div>
+                                        <div id="checkboxes">
+                                            @foreach ($caracteristica->opcoes_real as $opcao)
+                                                <label>
+                                                    <input type="checkbox" id="one" name="compatibilidade[]" value="0.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button>
                             </div>
                         </div>
                     </div>
@@ -140,7 +139,7 @@
                                 <input type="text" class="main-input" name="preco[]" id="preco" maxlength="10" onkeypress="$(this).mask('###.##0,00', {reverse: true});" autocomplete="off" required>
                             </div>
                             <div class="col-md-2 padding-direita">
-                                <input type="number" class="main-input" id="qtd-input" name="qtd[]" onkeypress="$(this).mask('00');" max="99" maxlength="2" autocomplete="off" required>
+                                <input type="number" class="main-input" id="qtd-input" name="qtd[]" onkeypress="$(this).mask('000');" max="999" maxlength="3" autocomplete="off" required>
                             </div>
                             <div class="col-md-1 sem-padding">
                                 <button type="button" class="second-btn modal-btn detalhes" data-toggle="modal" data-target="#detalhe-opcao-0">Detalhes</button>
@@ -171,10 +170,13 @@
 
 <div class="row" id="opcao-0"><div class="col-md-8 padding-direita"><input type="text" class="main-input" name="titulo" maxlength="30" autocomplete="off" required></div><div class="col-md-3 padding-direita"><input type="text" class="main-input" name="titulo" maxlength="30" autocomplete="off" required></div><div class="col-md-1 sem-padding"><button class="second-btn detalhes">Detalhes</button></div></div>
             
+var semModal = $('<div id="modais"> <div class="modal fade" '+idModal+' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <div class="modal-content"><div class="modal-header"><h5 class="modal-title">Você ainda não possui outras opções cadastradas neste produto</h5></div><div class="modal-body"></div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Ok</button></div></div></div></div></div><script>');
+var modal = $('<div class="modal fade" '+idModal+' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Selecione as opções que são incompatíveis</h5></div>            <div class="modal-body">@foreach ($produto->caracteristicas as $caracteristica)<div class="multiselect"><div class="selectBox"><select><option>{{$caracteristica->caracteristica->nome}}</option></select><div class="overSelect"></div></div><div id="checkboxes">@foreach ($caracteristica->opcoes_real as $opcao)<label><input type="checkbox" id="one" name="compatibilidade[]" value="'+componenteAtual+'.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}</label>@endforeach</div></div>@endforeach</div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button></div></div></div></div>');
 
 
 <div class="modal fade" id="detalhe-opcao-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Compatibilidade</h5></div>            <div class="modal-body">@foreach ($produto->caracteristicas as $caracteristica)<div class="multiselect"><div class="selectBox"><select><option>{{$caracteristica->caracteristica->nome}}</option></select><div class="overSelect"></div></div><div id="checkboxes">@foreach ($caracteristica->opcoes_real as $opcao)<label><input type="checkbox" id="one" name="compatibilidade[]" value="0.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}</label>@endforeach</div></div>@endforeach</div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button></div></div></div></div>
 --}}
+
 <script>
 
 
@@ -205,14 +207,19 @@
             componenteAtual = componenteInicial-1;
             var idModal= 'id="detalhe-opcao-'+componenteAtual+'"';
             var mascara = "'###.##0,00'"
-            var mascara2 = "'00'"
+            var mascara2 = "'000'"
             var keyPress2 = 'onkeypress="$(this).mask('+mascara2+');"'
             var keyPress= 'onkeypress="$(this).mask('+mascara+', {reverse: true});"'
             var opcaoId = '<div class="row espacado" id="opcao-' + componenteInicial + '">';
-            var input = $(opcaoId+'<div class="col-md-7 padding-direita"><input type="text" class="main-input" name="opcao[]" maxlength="30"  autocomplete="off" required></div><div class="col-md-2 padding-direita"><input type="text" class="main-input" name="preco[]" maxlength="10" autocomplete="off" '+keyPress+'  required></div><div class="col-md-2 padding-direita"><input type="number" class="main-input" id="qtd-input" name="qtd[]" max="99" '+keyPress2+' maxlength="2" autocomplete="off" required></div><div class="col-md-1 sem-padding"><button type="button" class="second-btn modal-btn detalhes" data-toggle="modal" data-target="#detalhe-opcao-'+componenteAtual+'">Detalhes</button></div></div>');
+            var input = $(opcaoId+'<div class="col-md-7 padding-direita"><input type="text" class="main-input" name="opcao[]" maxlength="30"  autocomplete="off" required></div><div class="col-md-2 padding-direita"><input type="text" class="main-input" name="preco[]" maxlength="10" autocomplete="off" '+keyPress+'  required></div><div class="col-md-2 padding-direita"><input type="number" class="main-input" id="qtd-input" name="qtd[]" max="999" '+keyPress2+' maxlength="3" autocomplete="off" required></div><div class="col-md-1 sem-padding"><button type="button" class="second-btn modal-btn detalhes" data-toggle="modal" data-target="#detalhe-opcao-'+componenteAtual+'">Detalhes</button></div></div>');
             $("#opcoes").append(input);
-            var modal = $('<div class="modal fade" '+idModal+' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Selecione as opções que são incompatíveis</h5></div>            <div class="modal-body">@foreach ($produto->caracteristicas as $caracteristica)<div class="multiselect"><div class="selectBox"><select><option>{{$caracteristica->caracteristica->nome}}</option></select><div class="overSelect"></div></div><div id="checkboxes">@foreach ($caracteristica->opcoes_real as $opcao)<label><input type="checkbox" id="one" name="compatibilidade[]" value="'+componenteAtual+'.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}</label>@endforeach</div></div>@endforeach</div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button></div></div></div></div>');
-            $("#modais").append(modal);
+            var semModal = $('<div id="modais"> <div class="modal fade" '+idModal+' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <div class="modal-content"><div class="modal-header"><h5 class="modal-title">Você ainda não possui outras opções cadastradas neste produto</h5></div><div class="modal-body"></div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Ok</button></div></div></div></div></div><script>');
+            var modal = $('<div class="modal fade" '+idModal+' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Selecione as opções que são incompatíveis</h5></div>            <div class="modal-body">@foreach ($produto->caracteristicas as $caracteristica)<div class="multiselect"><div class="selectBox"><select><option>{{$caracteristica->caracteristica->nome}}</option></select><div class="overSelect"></div></div><div id="checkboxes">@foreach ($caracteristica->opcoes_real as $opcao)<label><input type="checkbox" id="one" name="compatibilidade[]" value="'+componenteAtual+'.{{$opcao->pivot['id']}}"/>{{$opcao->nome}}</label>@endforeach</div></div>@endforeach</div><div class="modal-footer"><button type="submit" class="main-btn modal-btn" data-dismiss="modal">Salvar</button></div></div></div></div>'); 
+            @if ((count($produto->caracteristicas))>0)
+                $("#modais").append(modal);
+            @else
+                $("#modais").append(semModal);
+            @endif
         }
         if(nome=="menos"){
             if(componenteInicial>1){

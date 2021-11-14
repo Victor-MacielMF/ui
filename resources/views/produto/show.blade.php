@@ -16,118 +16,122 @@
         </div>
     </div>
     {{-- Produto --}}
+
     <div id="produto-view-area">
-        <div class="container sem-padding">
-            <div class="row">
-                <div class="col-md-5 azul">
-                    <div id="carousel" class="carousel slide" data-ride="carousel" data-pause="hover" data-interval="false">
-                        <div class="carousel-inner">
-                            {{$indice=0}}
-                            @foreach ($produto->imagens as $imagem)
-                                @if ($indice==0)
-                                    <div class="carousel-item active" style="background-image: url({{$imagem->imagem}});">
-                                    </div>
-                                @else
-                                    <div class="carousel-item" style="background-image: url({{$imagem->imagem}});">
-                                    </div>
-                                @endif
-                                {{$indice+=1}}
-                            @endforeach
-                        </div>
-                        <ol class="carousel-indicators">
-                            {{$indice=0}}
-                            @foreach ($produto->imagens as $imagem)
-                                @if ($indice==0)
-                                    <li data-target="#carousel" data-slide-to="{{$indice}}" class="indicator active"></li>
-                                @else
-                                    <li data-target="#carousel" data-slide-to="{{$indice}}" class="indicator"></li>
-                                @endif
-                                {{$indice+=1}}
-                            @endforeach
-                        </ol>
-                    </div>
-
-
-
-
-
-
-                </div>
-                <div class="col-md-7 vermelho">
-                    <div class="row row-produto">
-                        <div class="sem">
-                        <h1 class="titulo-produto">{{$produto->nome}}</h1>
-                        <p class="descricao">{{$produto->descricao}} 
-                            
-                        </p>
-
-                        </div>
-                       
-                        @if (empty($caracteristicas[0]))
-                            <div class="ocupar-espaco">
+        <form action="">
+            <div class="container sem-padding">
+                <div class="row">
+                    <div class="col-md-5 azul">
+                        <div id="carousel" class="carousel slide" data-ride="carousel" data-pause="hover" data-interval="false">
+                            <div class="carousel-inner">
+                                {{$indice=0}}
+                                @foreach ($produto->imagens as $imagem)
+                                    @if ($indice==0)
+                                        <div class="carousel-item active" style="background-image: url({{$imagem->imagem}});">
+                                        </div>
+                                    @else
+                                        <div class="carousel-item" style="background-image: url({{$imagem->imagem}});">
+                                        </div>
+                                    @endif
+                                    {{$indice+=1}}
+                                @endforeach
                             </div>
-                        @endif
+                            <ol class="carousel-indicators">
+                                {{$indice=0}}
+                                @foreach ($produto->imagens as $imagem)
+                                    @if ($indice==0)
+                                        <li data-target="#carousel" data-slide-to="{{$indice}}" class="indicator active"></li>
+                                    @else
+                                        <li data-target="#carousel" data-slide-to="{{$indice}}" class="indicator"></li>
+                                    @endif
+                                    {{$indice+=1}}
+                                @endforeach
+                            </ol>
+                        </div>
 
-                            <form>
-                                @csrf
-                                @foreach ($caracteristicas as $caracteristica)
-                                    <div class="sem">
-                                        <div class="opcoes">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                <label class="input-group-text" for="opcao-">{{$caracteristica->caracteristica->nome}}</label>
+
+
+
+
+
+                    </div>
+                    <div class="col-md-7 vermelho">
+                        <div class="row row-produto">
+                            <div class="sem">
+                            <h1 class="titulo-produto">{{$produto->nome}}</h1>
+                            <p class="descricao">{{$produto->descricao}} 
+                                
+                            </p>
+
+                            </div>
+                        
+                            @if (empty($caracteristicas[0]))
+                                <div class="ocupar-espaco">
+                                </div>
+                            @endif
+
+                                <form>
+                                    @csrf
+                                    @foreach ($caracteristicas as $caracteristica)
+                                        <div class="sem">
+                                            <div class="opcoes">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <label class="input-group-text" for="opcao-">{{$caracteristica->caracteristica->nome}}</label>
+                                                    </div>
+                                                    <select id="form" class="custom-select" name="select">
+                                                        <option selected id="escolha" class="escolha" value="escolha">Escolha...</option>
+                                                        @foreach ($caracteristica->opcoes_real as $opcao)
+                                                            <option id="{{$opcao->pivot['id']}}" class="{{$opcao->pivot['id']}}" value="{{$opcao->pivot['id']}}"> 
+                                                                <p>{{$opcao->nome}}</p>
+                                                                <p> ---- R$: {{number_format($opcao->pivot['preco'],2)}}</p>
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                                <select id="form" class="custom-select" name="select">
-                                                    <option selected id="escolha" class="escolha" value="escolha">Escolha...</option>
-                                                    @foreach ($caracteristica->opcoes_real as $opcao)
-                                                        <option id="{{$opcao->pivot['id']}}" class="{{$opcao->pivot['id']}}" value="{{$opcao->pivot['id']}}"> 
-                                                            <p>{{$opcao->nome}}</p>
-                                                            <p> ---- R$: {{number_format($opcao->pivot['preco'],2)}}</p>
-                                                        </option>
-                                                    @endforeach
-                                                </select>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </form>
+                                    @endforeach
+                                </form>
 
-                    <div class="col-md-6 sem">
-                        <div>
-                            <label class="quantidade">Quantidade:</label>
-                            <div class="number-input">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ><i class="bi bi-dash"></i></button>
-                                <input class="quantity" min="0" name="quantity" value="0" type="number" max="0">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><i class="bi bi-plus"></i></button>
+                        <div class="col-md-6 sem">
+                            <div>
+                                <label class="quantidade">Quantidade:</label>
+                                <div class="number-input">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="sem-form"><i class="bi bi-dash"></i></button>
+                                    <input class="quantity" min="0" name="quantity" value="0" type="number" max="0" required>
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus sem-form"><i class="bi bi-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="disponiveis">Unidades disponíveis: <div id="quantidade-calculada"></div></div>
+
+                            <div class="consultar-cep">
+                                <label class="consultar">Consultar frete e prazo de entrega</label>
+                                <input type="text" class="form-control main-input input-cep" onkeypress="$(this).mask('00.000-000')" minlength="10">
+                                <button class="main-btn cep sem-form">OK</button>
                             </div>
                         </div>
-                        <div class="disponiveis">Unidades disponíveis: <div id="quantidade-calculada"></div></div>
-
-                        <div class="consultar-cep">
-                            <label class="consultar">Consultar frete e prazo de entrega</label>
-                            <input type="text" class="form-control main-input input-cep" onkeypress="$(this).mask('00.000-000')" minlength="10">
-                            <button class="main-btn cep">OK</button>
+                        <div class="col-md-6 sem">
+                                <div class="texto" >
+                                    <p id="total">Total: <div class="inline2">R$</div></p>
+                                    <p id="valor">0
+                                    </p>
+                                    <sup class="centavos" id="valor-centavos">00</sup>
+                                    <br>
+                                    <p class="em">em</p>
+                                    <p class="juros"> 12x R$ XXX<sup>aa</sup> sem juros</p>
+                                </div>
+                            <button class="comprar">
+                                <i class="bi bi-cart-fill"></i> Carrinho
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-6 sem">
-                            <div class="texto" >
-                                <p id="total">Total: <div class="inline2">R$</div></p>
-                                <p id="valor">0
-                                </p>
-                                <sup class="centavos" id="valor-centavos">00</sup>
-                                <br>
-                                <p class="em">em</p>
-                                <p class="juros"> 12x R$ XXX<sup>aa</sup> sem juros</p>
-                            </div>
-                        <button class="comprar">
-                            <i class="bi bi-cart-fill"></i> Carrinho
-                        </button>
                     </div>
-                </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
 
     <div id="vendedor-area">
         <div class="container sem-padding">
@@ -358,8 +362,16 @@
 
 <script>
 
+    $( ".comprar" ).click(function() {
+        if(!(($('.quantity').val()!=0)&&($('.quantity').val()!=''))){
+            event.preventDefault();
+            alert("Informe a quantidade");
+        }
+    });
 
-
+    $( ".sem-form" ).click(function() {
+        event.preventDefault();
+    });
 
     $(function(){
         var previous;

@@ -38,7 +38,7 @@
                 <div class="row titulo-area">
                     <div class="col-md-12">
                         <div class="title-containers">
-                            Condições de venda
+                            Pré-visualização
                         </div>
                     </div>
                     <div class="row texto-centralizado-meio">
