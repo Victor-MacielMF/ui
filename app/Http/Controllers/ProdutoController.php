@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaracOpcao;
-use App\Models\CaracOpcaoProdutoCarac;
 use App\Models\Caracteristica;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -12,15 +11,10 @@ use App\Models\Compatibilidade;
 use App\Models\Produto;
 use App\Models\ProdutoCarac;
 use App\Models\ProdutoImagem;
-use Facade\FlareClient\Stacktrace\File;
-use FunctionName;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-
-use function Psy\debug;
 
 class ProdutoController extends Controller
 {

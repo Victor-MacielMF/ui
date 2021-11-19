@@ -218,6 +218,24 @@ p, li{
     color: #202226;
 }
 
+.orcamento-btn{
+    background-color: #E5CD14;
+    width: 40%;
+    height: 2.5em;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: .4em;
+    border: 1px solid #E5CD14;
+    color: #202226;
+    position: absolute;
+    bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
 .main-btn:hover{
     background-color:  #cfba15;
 }
@@ -587,6 +605,11 @@ input[type="radio"]{
 .espaco-cima{
     margin-top: 1em !important;
 }
+.espaco-cima2{
+    margin-top: 1em !important;
+    background-color: #aa9a1fa4;
+    margin: 1em;
+}
 
 #btn-salvar{
     font-size: 16px;
@@ -750,6 +773,15 @@ input[type="radio"]{
     font-weight: 700;
     font-size: 30px;
 }
+.inline3{
+    margin-left: 1em;
+    display: inline;
+    
+    color:#E5CD14;
+    
+    font-weight: 700;
+    font-size: 16px;
+}
 .centavos{
     display: inline;
     
@@ -795,6 +827,13 @@ input[type="radio"]{
     padding: 1em 2em;
 }
 
+.enderecos2{
+    margin: 0;
+    margin-top: 1em;
+    background-color: #aa9a1fa4;
+    padding: 1em 2em;
+}
+
 .enderecos-left{
     text-align: left;
 }
@@ -804,6 +843,14 @@ input[type="radio"]{
 }
 
 .enderecos p{
+    color:#202226;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    display: inline;
+    font-weight: 700;
+}
+.enderecos2 p{
     color:#202226;
     padding: 0;
     margin: 0;
@@ -906,13 +953,33 @@ input[type="radio"]{
     padding-top: .5em;
 }
 .carousel-indicators .active{
+    
+    margin-bottom: 0;
     background-color: #E5CD14 !important;
+}
+.relative-body{
+    text-align: left !important;
 }
 
 .carousel-indicators {
     position: relative;
     margin-top: 1em;
-    margin-bottom: 0;
+}
+.margin-right-aqui{
+    margin-right: 1em;
+}
+.left-absolut{
+    margin-top: 1em;
+    font-weight: 600;
+    margin-bottom: 0 !important;
+}
+.left-absolut3{
+    width: 100%;
+    font-size: 20px;
+    text-align: center !important;
+}
+.left-absolut2{
+    font-weight: 400;
 }
 .row-produto{
     width: 100%;
@@ -922,6 +989,13 @@ input[type="radio"]{
     font-size: 26px;
     font-weight: bold;
     padding-bottom: .5em;
+}
+.titulo-servico{
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    padding-bottom: .5em;
+    text-align: center;
 }
 .descricao{
     color: white;
@@ -1071,6 +1145,11 @@ select:disabled{
 }
 
 .sem{
+    padding:0;
+}
+
+.sem2{
+    position: relative;
     padding:0;
 }
 
@@ -1281,12 +1360,21 @@ select:disabled{
     font-size: 18px;
 }
 
-.product-title{
-        margin-top: .5em;
+.product-title2{
+        margin-top: 1em;
         color: white;
         font-size: 18px;
         text-align: center;
+        min-height: 2em;
+        max-height: 2em;
     
+}
+.product-title{
+    margin-top: 1em;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+
 }
 
 .none{
@@ -1371,6 +1459,10 @@ select:disabled{
     padding-bottom: 1.5em;
 }
 
+.nome-orcamento{
+    color: white !important;
+    font-weight: 500 !important;
+}
 
 .responder{
     font-size: 18px;
@@ -1415,7 +1507,19 @@ select:disabled{
     display: table;
     text-align: center;
 }
-
+.sem-orcamentos{
+    border: 1px solid black;
+    background-color: #aa9a1fa4;
+    height: 10em;
+    overflow: hidden;
+    display: table;
+    text-align: center;
+    padding: 0em 1em 0em 1em !important;
+}
+.sem-orcamentos h4{
+    display: table-cell; 
+    vertical-align: middle;
+}
 .sem-perguntas h4{
     display: table-cell; 
     vertical-align: middle;
@@ -1480,7 +1584,20 @@ select:disabled{
     background-position: center center;
     background-size: cover;
 }
-
+.imagem-categoria3{
+    margin: 2em;
+    height: 14em;
+    background-image: url(/img/produto/impressão3D.png);
+    background-position: center center;
+    background-size: cover;
+}
+.imagem-categoria4{
+    margin: 2em;
+    height: 14em;
+    background-image: url(/img/produto/modelagem.jpg);
+    background-position: center center;
+    background-size: cover;
+}
 .categoria{
     width: 100%;
     height: 5em;
@@ -1691,6 +1808,9 @@ select:disabled{
   .texto-centralizado-meio{
       text-align: center;
   }
+  .centralizado-meio{
+      text-align: center !important;
+  }
 
   .link-botao{
     text-decoration: none !important;
@@ -1739,4 +1859,15 @@ select:disabled{
     font-weight: 700;
     padding: 3em 0em 3em 0em;
     border: 1px solid black;
+}
+
+.forma-contato{
+    color: #202226 !important;
+    background: #E5CD14;
+    font-size: 18px;
+    padding: 1em !important;
+    border-radius: 3em;
+}
+.forma-contatos{
+    padding-top: 1em;
 }

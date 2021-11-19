@@ -9,29 +9,29 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="title-vender">
-                            Antes de mais nada,<br>o que você deseja anunciar?
+                            Qual categoria de <br>serviços deseja visualizar?
                         </h1>
                     </div>
 
                     <div class="col-md-6 vender-produto">
-                        <a href="/vender-produto" class="sem-decoration">
+                        <a href="/servicos-1" class="sem-decoration">
                             <div class="area-produto">
                                 <div class="categoria">
-                                    <p>Produtos</p>
+                                    <p>Impressão 3D</p>
                                 </div>
-                                <div class="imagem-vender"></div>
+                                <div class="imagem-categoria3"></div>
                             </div>
                         </a>
                     </div>
 
                     
                     <div class="col-md-6 vender-servico">
-                        <a href="/categoria-servico" class="sem-decoration">
+                        <a href="/servicos-2" class="sem-decoration">
                             <div class="area-produto">
                                     <div class="categoria">
-                                        <p>Serviços</p>
+                                        <p>Modelagem 3D</p>
                                     </div>
-                                    <div class="imagem-vender2">
+                                    <div class="imagem-categoria4">
                                     </div>
                             </div>
                         </a>

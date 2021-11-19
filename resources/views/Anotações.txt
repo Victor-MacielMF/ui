@@ -95,3 +95,5 @@ consegue avançar sem ter preenchido os campos e são escondidos
 Proteção contra isso
 
 mensagem caso n tenha nenhum produto
+
+mensagem caso n tenha anuncio
