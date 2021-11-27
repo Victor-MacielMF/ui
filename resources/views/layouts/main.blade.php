@@ -38,7 +38,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                        3D Print Academy
+                        Marketplace
                 </a>
                 <div class="collapse navbar-collapse justify-content-center" id="navbar-links">
                     <div class="navbar-nav">
